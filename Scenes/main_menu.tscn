@@ -48,3 +48,4 @@ layout_mode = 2
 text = "Quit to Desktop"
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/MenuOptions/Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_button_up"]

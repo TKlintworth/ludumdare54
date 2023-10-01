@@ -26,7 +26,7 @@ func spawn_projectile(dir):
 	var proj = ProjectileScene.instantiate()
 	print(shoot_point.global_position)
 	proj.position = shoot_point.global_position
-	proj.create_projectile(dir, 200)
+	proj.create_projectile(dir, 600)
 	get_tree().root.add_child(proj)
 
 func fire():
