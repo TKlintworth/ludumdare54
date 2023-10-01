@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4rimfa2crtbg"]
+
+[ext_resource type="Texture2D" uid="uid://by3ruogvkyudj" path="res://assets/sprites/slingshot_48x48.png" id="1_mk52a"]
+[ext_resource type="Script" path="res://Scripts/Weapon.gd" id="2_awlsa"]
+[ext_resource type="PackedScene" uid="uid://bx6qoo1j1uy3d" path="res://Scenes/Projectile.tscn" id="3_5048i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qv85s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mk52a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Weapon" type="AnimatedSprite2D"]
+position = Vector2(1, 0)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_qv85s")
+script = ExtResource("2_awlsa")
+ProjectileScene = ExtResource("3_5048i")
+
+[node name="ShootPoint" type="Node2D" parent="."]
+position = Vector2(0, 4)
