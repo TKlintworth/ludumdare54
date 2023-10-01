@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx6qoo1j1uy3d"]
+[gd_scene load_steps=6 format=3 uid="uid://bx6qoo1j1uy3d"]
 
-[ext_resource type="Texture2D" uid="uid://b850quybrusg3" path="res://Art/icon.svg" id="1_4nipo"]
 [ext_resource type="Script" path="res://Scripts/Projectile.gd" id="1_x0vsw"]
+[ext_resource type="Texture2D" uid="uid://dxlosxbwwcy7f" path="res://assets/sprites/slingshot_projectile_48x48.png" id="2_h4i7x"]
+[ext_resource type="Script" path="res://Scripts/ProjectileHitArea.gd" id="3_f0qbv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5cmm1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_4nipo")
+"texture": ExtResource("2_h4i7x")
 }],
 "loop": true,
 "name": &"default",
@@ -15,18 +16,25 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikvrw"]
-size = Vector2(32, 32)
+size = Vector2(26, 28)
 
 [node name="Projectile" type="Node2D" groups=["tag_projectile"]]
 script = ExtResource("1_x0vsw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_5cmm1")
 
 [node name="HitArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("3_f0qbv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_ikvrw")
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
+[connection signal="area_entered" from="HitArea" to="HitArea" method="_on_area_entered"]
+[connection signal="body_entered" from="HitArea" to="HitArea" method="_on_body_entered"]
+[connection signal="body_shape_entered" from="HitArea" to="HitArea" method="_on_body_shape_entered"]

@@ -15,3 +15,7 @@ func _on_play_button_up():
 	# Tell GameManager we want to load the first scene
 	print("Button pressed")
 	GameManager.change_level(1)
+
+
+func _on_quit_button_up():
+	GameManager.quit()
