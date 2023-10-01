@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://p085e47tmcun"]
+
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_sya6k"]
+[ext_resource type="PackedScene" uid="uid://dteel3ydkoen0" path="res://Scenes/level1.tscn" id="2_wppr7"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_sya6k")
+scenes = Array[PackedScene]([ExtResource("2_wppr7")])
