@@ -85,12 +85,17 @@ func _on_area_entered(area):
 			node.queue_free()
 
 
-func _on_dodge_detect_area_entered(area):
-	if !area.get_parent().is_in_group("tag_enemy_projectile"):
-		if area.get_parent().is_in_group("tag_projectile"):
-			if randi_range(0, 2) == 0:
-				dodge(area)
-			
+
+
+func raycast_in_dir(to, dist):
+	var space_state = get_world_2d().direct_space_state
+	var v = (position + to).normalized() * dist
+	
+	var query = PhysicsRayQueryParameters2D.create(position, v, collision_mask)
+	query.collide_with_areas = false
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	return result
 	
 func dodge(a):
 	var n = a.get_parent()
@@ -105,9 +110,13 @@ func dodge(a):
 	current_state = State.STATE_DODGE
 	
 	
-	
-
-
-
 func _on_animated_sprite_2d_animation_finished():
 	animation_playing = false
+
+func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	print("body shape entered")
+	print(body_rid)
+	print(body.name)
+	if(body.name == "tile24"):
+		print(body.get_coords_for_body_rid(body_rid))
+		queue_free()

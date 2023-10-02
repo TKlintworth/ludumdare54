@@ -1,20 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://dteel3ydkoen0"]
+[gd_scene load_steps=9 format=3 uid="uid://dteel3ydkoen0"]
 
 [ext_resource type="PackedScene" uid="uid://bvtq8b55muo3y" path="res://Scenes/level_manager.tscn" id="1_433uq"]
 [ext_resource type="PackedScene" uid="uid://d4hdgrc2sgj7g" path="res://Scenes/tile24.tscn" id="1_naaqm"]
 [ext_resource type="PackedScene" uid="uid://dy6qfxvdwktkn" path="res://Scenes/LevelUI.tscn" id="1_uv6qj"]
 [ext_resource type="PackedScene" uid="uid://cfipsyu3368kr" path="res://Scenes/player.tscn" id="2_u626u"]
-[ext_resource type="PackedScene" uid="uid://cjded4e4tx0lq" path="res://Scenes/Enemy.tscn" id="3_dhsuc"]
-[ext_resource type="PackedScene" uid="uid://c2ppepkmpj8q3" path="res://Scenes/Goblin.tscn" id="4_apppi"]
-[ext_resource type="PackedScene" uid="uid://cp4hdbswcmujl" path="res://Scenes/Pumpkin.tscn" id="5_eoxvr"]
+[ext_resource type="PackedScene" uid="uid://buagcpvr4mu2s" path="res://Scenes/Skeleton.tscn" id="5_mgk2v"]
 [ext_resource type="PackedScene" uid="uid://gpmkkv07fe8e" path="res://Scenes/Pickup.tscn" id="6_60ovm"]
 [ext_resource type="PackedScene" uid="uid://c654ajyjw7val" path="res://Scenes/GameUI.tscn" id="7_ncw7s"]
+[ext_resource type="PackedScene" uid="uid://dbdww7k6tq0rl" path="res://Scenes/LifePickup.tscn" id="10_b60mh"]
 
 [node name="level1" type="Node2D"]
 
 [node name="tile24" parent="." instance=ExtResource("1_naaqm")]
-layer_0/tile_data = PackedInt32Array(65537, 196609, 0, 131073, 1, 0, 196609, 65537, 0, 262145, 1, 0, 327681, 196609, 0, 393217, 131073, 0, 458753, 65537, 0, 65538, 1, 0, 131074, 131073, 0, 196610, 196609, 0, 327682, 65537, 0, 393218, 1, 0, 458754, 1, 0, 65539, 65537, 0, 131075, 65537, 0, 393219, 131073, 0, 458755, 65537, 0, 65540, 131073, 0, 131076, 196609, 0, 196612, 131073, 4, 262148, 131073, 5, 327684, 65537, 0, 458756, 1, 0, 65541, 65537, 0, 131077, 1, 0, 196613, 196609, 4, 262149, 196609, 5, 327685, 65537, 0, 393221, 65537, 0, 458757, 65537, 0, 65542, 65537, 0, 131078, 196609, 0, 196614, 1, 0, 262150, 196609, 0, 327686, 1, 0, 393222, 1, 0, 458758, 65537, 0, 65543, 1, 0, 131079, 131073, 0, 196615, 65537, 0, 262151, 196609, 0, 327687, 131073, 0, 393223, 65537, 0, 458759, 131073, 0, 65544, 131073, 0, 131080, 196609, 0, 196616, 65537, 0, 262152, 1, 0, 327688, 262145, 4, 393224, 262145, 5, 458760, 65537, 0, 65545, 65537, 0, 131081, 65537, 0, 196617, 1, 0, 262153, 65537, 0, 327689, 327681, 4, 393225, 327681, 5, 458761, 65537, 0, 65546, 196609, 0, 131082, 196609, 0, 196618, 131073, 0, 262154, 196609, 0, 327690, 196609, 0, 393226, 196609, 0, 458762, 131073, 0, 65547, 1, 0, 131083, 1, 0, 196619, 1, 0, 262155, 1, 0, 327691, 1, 0, 393227, 131073, 0, 458763, 131073, 0, 65548, 65537, 0, 131084, 131073, 0, 196620, 65537, 0, 262156, 196609, 0, 327692, 196609, 0, 393228, 131073, 0, 458764, 1, 0, 196611, 131073, 0, 262147, 131073, 0, 0, 524289, 2, 2, 589825, 0, 3, 589825, 0, 4, 589825, 0, 5, 589825, 0, 6, 589825, 0, 7, 589825, 0, 8, 589825, 0, 9, 524289, 2, 10, 524289, 2, 11, 524289, 2, 12, 524289, 2, 13, 524289, 2, 65549, 524289, 2, 131085, 524289, 2, 196621, 524289, 2, 262157, 524289, 2, 327693, 524289, 2, 393229, 524289, 2, 458765, 524289, 2, 524301, 524289, 2, 524288, 524289, 2, 524289, 524289, 2, 524290, 524289, 2, 524291, 524289, 2, 524292, 524289, 2, 524293, 524289, 2, 524294, 524289, 2, 524295, 524289, 2, 524296, 524289, 2, 524297, 524289, 2, 524298, 524289, 2, 524299, 524289, 2, 524300, 524289, 2, 65536, 524289, 2, 131072, 524289, 2, 196608, 524289, 2, 262144, 524289, 2, 327680, 524289, 2, 393216, 524289, 2, 458752, 524289, 2, 262146, 327681, 0, 327683, 327681, 0, 393220, 327681, 0, 1, 524289, 0)
-layer_1/tile_data = PackedInt32Array(1, 65537, 4, 65537, 65537, 5, 2, 65537, 4, 65538, 65537, 5, 3, 65537, 4, 65539, 65537, 5, 4, 65537, 4, 65540, 65537, 5, 5, 65537, 4, 65541, 65537, 5, 6, 65537, 4, 65542, 65537, 5, 7, 1, 4, 65543, 1, 5, 8, 1, 4, 65544, 1, 5, 327681, 393217, 4, 327682, 458753, 4, 393217, 393217, 5, 393218, 458753, 5)
+layer_0/tile_data = PackedInt32Array(0, 524289, 2, 65549, 524289, 2, 131085, 524289, 2, 196621, 524289, 2, 262157, 524289, 2, 327693, 524289, 2, 393229, 524289, 2, 458765, 524289, 2, 524301, 524289, 2, 524288, 524289, 2, 524289, 524289, 2, 524290, 524289, 2, 524291, 524289, 2, 524292, 524289, 2, 524293, 524289, 2, 524294, 524289, 2, 524295, 524289, 2, 524296, 524289, 2, 524297, 524289, 2, 524298, 524289, 2, 524299, 524289, 2, 524300, 524289, 2, 65536, 524289, 2, 131072, 524289, 2, 196608, 524289, 2, 262144, 524289, 2, 327680, 524289, 2, 393216, 524289, 2, 458752, 524289, 2, 65537, 131073, 0, 131073, 327681, 1, 196609, 65537, 0, 262145, 262145, 0, 327681, 393217, 0, 393217, 327681, 0, 458753, 262145, 0, 65538, 65537, 0, 131074, 196609, 0, 196610, 1, 0, 262146, 327681, 1, 327682, 65537, 0, 393218, 327681, 0, 458754, 196609, 0, 65539, 327681, 0, 131075, 262145, 0, 196611, 1, 7, 262147, 1, 6, 327683, 65537, 6, 393219, 458753, 0, 458755, 262145, 1, 65540, 1, 0, 131076, 262145, 1, 196612, 65537, 6, 262148, 65537, 7, 327684, 65537, 7, 393220, 65537, 0, 458756, 327681, 1, 65541, 131073, 4, 131077, 131073, 5, 196613, 65537, 7, 262149, 65537, 7, 327685, 65537, 6, 393221, 262145, 4, 458757, 262145, 5, 65542, 196609, 4, 131078, 196609, 5, 196614, 1, 7, 262150, 65537, 6, 327686, 65537, 6, 393222, 327681, 4, 458758, 327681, 5, 65543, 458753, 0, 131079, 196609, 0, 196615, 1, 6, 262151, 1, 6, 327687, 1, 7, 393223, 65537, 7, 458759, 65537, 7, 65544, 65537, 0, 131080, 196609, 0, 196616, 65537, 6, 262152, 65537, 7, 327688, 65537, 6, 393224, 1, 6, 458760, 65537, 6, 65545, 262145, 0, 131081, 458753, 0, 196617, 458753, 0, 262153, 131073, 0, 327689, 131073, 0, 393225, 131073, 0, 458761, 196609, 0, 65546, 262145, 1, 131082, 262145, 1, 196618, 458753, 0, 262154, 1, 0, 327690, 131073, 0, 393226, 458753, 0, 458762, 458753, 0, 65547, 393217, 0, 131083, 393217, 0, 196619, 262145, 0, 262155, 262145, 1, 327691, 393217, 0, 393227, 327681, 0, 458763, 327681, 0, 65548, 393217, 0, 131084, 327681, 1, 196620, 458753, 0, 262156, 65537, 0, 327692, 262145, 1, 393228, 65537, 0, 458764, 65537, 0, 1, 589825, 0, 2, 589825, 0, 3, 589825, 0, 4, 589825, 0, 5, 589825, 0, 6, 589825, 0, 7, 589825, 0, 8, 589825, 0, 9, 589825, 0, 10, 589825, 0, 11, 589825, 0, 12, 589825, 0, 13, 524289, 2)
+layer_1/tile_data = PackedInt32Array(327681, 393217, 4, 327682, 458753, 4, 393217, 393217, 5, 393218, 458753, 5, 3, 65537, 4, 65539, 65537, 5, 12, 1, 4, 65548, 1, 5, 4, 1, 4, 65540, 1, 5)
 
 [node name="Player" parent="." instance=ExtResource("2_u626u")]
 position = Vector2(36, 86)
@@ -36,41 +35,37 @@ metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource("3_dhsuc")]
-position = Vector2(267, 121)
-MAX_HEALTH = 110.0
+[node name="Skeleton" parent="Enemies" instance=ExtResource("5_mgk2v")]
+position = Vector2(273, 151)
 
-[node name="Enemy3" parent="Enemies" instance=ExtResource("3_dhsuc")]
-position = Vector2(154, 46)
-MAX_HEALTH = 130.0
+[node name="LevelManager" parent="." node_paths=PackedStringArray("level_UI", "tile_map") instance=ExtResource("1_433uq")]
+selectable_tiles = 12
+level_UI = NodePath("../Control/LevelUI")
+tile_map = NodePath("../tile24")
 
-[node name="Goblin" parent="Enemies" instance=ExtResource("4_apppi")]
-position = Vector2(305, 26)
+[node name="LifePickup" parent="." instance=ExtResource("10_b60mh")]
+position = Vector2(192, 164)
 
-[node name="Pumpkin" parent="Enemies" instance=ExtResource("5_eoxvr")]
-position = Vector2(242, 41)
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="LevelUI" parent="." instance=ExtResource("1_uv6qj")]
-z_index = 1
-y_sort_enabled = true
+[node name="GameUI" parent="Control" instance=ExtResource("7_ncw7s")]
+layout_mode = 1
+offset_left = 64.0
+offset_top = 164.0
+offset_right = 64.0
+offset_bottom = 164.0
+
+[node name="LevelUI" parent="Control" instance=ExtResource("1_uv6qj")]
+layout_mode = 1
 offset_left = 169.0
 offset_top = 105.0
 offset_right = 169.0
 offset_bottom = 105.0
 
-[node name="GameUI" parent="." instance=ExtResource("7_ncw7s")]
-offset_left = 53.0
-offset_top = 6.0
-offset_right = 53.0
-offset_bottom = 6.0
-
-[node name="LevelManager" parent="." node_paths=PackedStringArray("level_UI", "tile_map") instance=ExtResource("1_433uq")]
-selectable_tiles = 12
-level_UI = NodePath("../LevelUI")
-tile_map = NodePath("../tile24")
-
 [node name="Pickup" parent="." instance=ExtResource("6_60ovm")]
-position = Vector2(48, 143)
+position = Vector2(49, 44)
 
 [editable path="Player"]
 [editable path="Player/Weapon"]

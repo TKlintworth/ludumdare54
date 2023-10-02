@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvtq8b55muo3y"]
+[gd_scene load_steps=3 format=3 uid="uid://bvtq8b55muo3y"]
 
 [ext_resource type="Script" path="res://Scripts/LevelManager.gd" id="1_evinx"]
+[ext_resource type="AudioStream" uid="uid://iknv2u3ai2n" path="res://assets/sounds/enemydie.wav" id="2_fx8lt"]
 
 [node name="LevelManager" type="Node2D"]
 script = ExtResource("1_evinx")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fx8lt")

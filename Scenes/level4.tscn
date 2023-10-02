@@ -1,28 +1,66 @@
-[gd_scene load_steps=6 format=3 uid="uid://ir60h3pjft40"]
+[gd_scene load_steps=9 format=3 uid="uid://ir60h3pjft40"]
 
 [ext_resource type="PackedScene" uid="uid://d4hdgrc2sgj7g" path="res://Scenes/tile24.tscn" id="1_o3mv7"]
 [ext_resource type="PackedScene" uid="uid://cfipsyu3368kr" path="res://Scenes/player.tscn" id="2_abvtg"]
 [ext_resource type="PackedScene" uid="uid://dy6qfxvdwktkn" path="res://Scenes/LevelUI.tscn" id="3_mw63o"]
 [ext_resource type="PackedScene" uid="uid://c654ajyjw7val" path="res://Scenes/GameUI.tscn" id="4_7jw7o"]
 [ext_resource type="PackedScene" uid="uid://bvtq8b55muo3y" path="res://Scenes/level_manager.tscn" id="5_rsuv6"]
+[ext_resource type="PackedScene" uid="uid://dbdww7k6tq0rl" path="res://Scenes/LifePickup.tscn" id="6_igow3"]
+[ext_resource type="PackedScene" uid="uid://cp4hdbswcmujl" path="res://Scenes/Pumpkin.tscn" id="7_m7pj0"]
+[ext_resource type="PackedScene" uid="uid://buagcpvr4mu2s" path="res://Scenes/Skeleton.tscn" id="8_n2h3g"]
 
 [node name="level4" type="Node2D"]
 
 [node name="tile24" parent="." instance=ExtResource("1_o3mv7")]
+layer_0/tile_data = PackedInt32Array(13, 524289, 2, 65549, 524289, 2, 131085, 524289, 2, 196621, 524289, 2, 262157, 524289, 2, 327693, 524289, 2, 393229, 524289, 2, 458765, 524289, 2, 524301, 524289, 2, 524300, 524289, 2, 524299, 524289, 2, 524298, 524289, 2, 524297, 524289, 2, 524296, 524289, 2, 524295, 524289, 2, 524294, 524289, 2, 524293, 524289, 2, 524292, 524289, 2, 524291, 524289, 2, 524290, 524289, 2, 524289, 524289, 2, 0, 524289, 2, 65536, 524289, 2, 131072, 524289, 2, 196608, 524289, 2, 262144, 524289, 2, 327680, 524289, 2, 393216, 524289, 2, 458752, 524289, 2, 524288, 524289, 2, 12, 524289, 0, 1, 524289, 0, 2, 524289, 0, 3, 524289, 0, 4, 524289, 0, 5, 524289, 0, 6, 524289, 0, 7, 524289, 0, 8, 524289, 0, 9, 524289, 0, 10, 524289, 0, 11, 524289, 0, 65548, 524289, 1, 65547, 524289, 1, 65546, 524289, 1, 65545, 524289, 1, 65544, 524289, 1, 65543, 524289, 1, 65542, 524289, 1, 65541, 524289, 1, 65540, 524289, 1, 65539, 524289, 1, 65538, 524289, 1, 65537, 524289, 1, 131073, 1, 6, 131074, 1, 6, 131075, 1, 6, 131076, 131073, 6, 131077, 131073, 6, 131078, 131073, 6, 196609, 1, 7, 196610, 1, 7, 196611, 1, 7, 196612, 131073, 6, 196613, 65537, 6, 196614, 65537, 6, 262148, 131073, 6, 262149, 65537, 7, 262150, 131073, 4, 327686, 131073, 5, 327685, 65537, 7, 327684, 131073, 6, 393220, 65537, 6, 393222, 65537, 7, 393223, 65537, 7, 393224, 65537, 6, 393221, 65537, 6, 393219, 1, 6, 327683, 65537, 7, 327682, 1, 6, 262146, 65537, 6, 262145, 1, 6, 262147, 65537, 7, 458757, 131073, 6, 458756, 131073, 6, 458755, 65537, 7, 393218, 65537, 6, 458758, 131073, 6, 458754, 65537, 6, 458753, 65537, 7, 393217, 65537, 6, 327681, 65537, 6, 262151, 196609, 4, 262152, 1, 7, 262153, 131073, 6, 196617, 327681, 5, 131081, 327681, 4, 131080, 262145, 4, 131079, 131073, 6, 196616, 262145, 5, 196615, 1, 7, 327687, 196609, 5, 327688, 65537, 7, 327689, 131073, 6, 393225, 131073, 6, 458760, 131073, 6, 458759, 131073, 6, 196618, 1, 6, 131082, 1, 6, 131083, 65537, 6, 131084, 1, 7, 196620, 1, 6, 196619, 1, 7, 262155, 1, 6, 262154, 1, 7, 327690, 65537, 6, 327691, 1, 7, 327692, 1, 6, 393227, 1, 7, 393226, 65537, 6, 458762, 1, 7, 458761, 131073, 6, 458763, 1, 6, 458764, 65537, 7, 393228, 65537, 6, 262156, 1, 6)
+layer_1/tile_data = PackedInt32Array(10, 589825, 4, 65546, 589825, 5, 5, 524289, 6, 65541, 524289, 7, 65545, 65537, 5, 9, 65537, 4)
 
 [node name="Player" parent="." instance=ExtResource("2_abvtg")]
+position = Vector2(33, 98)
+
+[node name="AnimatedSprite2D" parent="Player" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="Player" index="1"]
+metadata/_edit_lock_ = true
 
 [node name="Weapon" parent="Player" index="2" node_paths=PackedStringArray("LevelManager")]
 LevelManager = NodePath("../../LevelManager")
 
+[node name="HitArea" parent="Player" index="3"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="Player/HitArea" index="0"]
+metadata/_edit_lock_ = true
+
 [node name="Enemies" type="Node2D" parent="."]
+position = Vector2(25, -6)
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("7_m7pj0")]
+position = Vector2(253, 170)
+
+[node name="Skeleton" parent="Enemies" instance=ExtResource("8_n2h3g")]
+position = Vector2(253, 77)
 
 [node name="LevelUI" parent="." instance=ExtResource("3_mw63o")]
+offset_left = 169.0
+offset_top = 115.0
+offset_right = 169.0
+offset_bottom = 115.0
 
 [node name="GameUI" parent="." instance=ExtResource("4_7jw7o")]
+offset_left = 61.0
+offset_top = 155.0
+offset_right = 61.0
+offset_bottom = 155.0
 
 [node name="LevelManager" parent="." node_paths=PackedStringArray("level_UI", "tile_map") instance=ExtResource("5_rsuv6")]
+position = Vector2(28, -18)
+selectable_tiles = 10
 level_UI = NodePath("../LevelUI")
 tile_map = NodePath("../tile24")
+
+[node name="LifePickup" parent="." instance=ExtResource("6_igow3")]
+position = Vector2(167, 84)
 
 [editable path="Player"]

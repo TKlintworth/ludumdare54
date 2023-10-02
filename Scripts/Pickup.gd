@@ -18,4 +18,5 @@ func _process(delta):
 
 func pick_up():
 	GameManager.update_score(score_value)
+	$AudioStreamPlayer.play()
 	queue_free()

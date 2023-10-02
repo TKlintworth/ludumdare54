@@ -26,6 +26,11 @@ func _physics_process(delta):
 		var dir = Vector2(direction_x, direction_y).normalized()
 
 		velocity = dir * SPEED
+		
+		if(velocity > Vector2(0,0)):
+			$AnimatedSprite2D.play("walk")
+		else:
+			$AnimatedSprite2D.play("idle")
 
 		move_and_slide()
 
@@ -39,6 +44,10 @@ func _process(delta):
 			player_died.emit()
 			queue_free()
 
+func take_damage(dmg):
+	$AudioStreamPlayer.play()
+	CURRENT_HEALTH -= dmg
+	player_damage.emit(CURRENT_HEALTH)
 
 func _on_hit_area_entered(area):
 	if(area.get_parent().is_in_group("tag_pickup")):

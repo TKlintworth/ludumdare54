@@ -1,36 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://boxy6h3fy1n1d"]
+[gd_scene load_steps=8 format=3 uid="uid://boxy6h3fy1n1d"]
 
 [ext_resource type="PackedScene" uid="uid://d4hdgrc2sgj7g" path="res://Scenes/tile24.tscn" id="1_kp8mx"]
 [ext_resource type="PackedScene" uid="uid://cfipsyu3368kr" path="res://Scenes/player.tscn" id="2_nhlrq"]
+[ext_resource type="PackedScene" uid="uid://dbdww7k6tq0rl" path="res://Scenes/LifePickup.tscn" id="2_w144u"]
 [ext_resource type="PackedScene" uid="uid://c654ajyjw7val" path="res://Scenes/GameUI.tscn" id="3_jeiri"]
 [ext_resource type="PackedScene" uid="uid://dy6qfxvdwktkn" path="res://Scenes/LevelUI.tscn" id="4_nporb"]
 [ext_resource type="PackedScene" uid="uid://bvtq8b55muo3y" path="res://Scenes/level_manager.tscn" id="5_2byvu"]
+[ext_resource type="PackedScene" uid="uid://buagcpvr4mu2s" path="res://Scenes/Skeleton.tscn" id="7_8ekhd"]
 
 [node name="level3" type="Node2D"]
 
 [node name="tile24" parent="." instance=ExtResource("1_kp8mx")]
+layer_0/tile_data = PackedInt32Array(13, 524289, 2, 65549, 524289, 2, 131085, 524289, 2, 196621, 524289, 2, 262157, 524289, 2, 327693, 524289, 2, 393229, 524289, 2, 458765, 524289, 2, 524301, 524289, 2, 524300, 524289, 2, 524299, 524289, 2, 524298, 524289, 2, 524297, 524289, 2, 524296, 524289, 2, 524295, 524289, 2, 524294, 524289, 2, 524293, 524289, 2, 524292, 524289, 2, 524291, 524289, 2, 524290, 524289, 2, 524289, 524289, 2, 524288, 524289, 2, 0, 524289, 2, 65536, 524289, 2, 131072, 524289, 2, 196608, 524289, 2, 262144, 524289, 2, 327680, 524289, 2, 393216, 524289, 2, 458752, 524289, 2, 1, 589825, 0, 2, 589825, 0, 3, 589825, 0, 4, 589825, 0, 5, 589825, 0, 6, 589825, 0, 7, 589825, 0, 8, 589825, 0, 9, 589825, 0, 10, 589825, 0, 11, 589825, 0, 12, 589825, 3, 65548, 589825, 1, 65547, 589825, 1, 65546, 589825, 1, 65545, 589825, 1, 65544, 589825, 1, 65543, 589825, 1, 65542, 589825, 1, 65541, 589825, 1, 65540, 589825, 1, 65539, 589825, 1, 65538, 589825, 1, 65537, 589825, 1, 393218, 327681, 0, 393219, 327681, 0, 393220, 262145, 4, 393221, 327681, 4, 458757, 327681, 5, 458756, 262145, 5, 458755, 458753, 0, 458754, 327681, 1, 458753, 131073, 0, 393217, 196609, 0, 327681, 65537, 0, 327682, 262145, 1, 262146, 458753, 0, 196610, 458753, 0, 196609, 1, 0, 131073, 327681, 1, 262145, 327681, 0, 131074, 1, 0, 131075, 131073, 0, 131076, 65537, 0, 131077, 131073, 6, 196613, 131073, 6, 196614, 262145, 1, 262150, 65537, 0, 262149, 327681, 0, 262148, 65537, 0, 196611, 262145, 1, 196612, 1, 0, 262147, 65537, 0, 327683, 327681, 1, 327684, 196609, 0, 327685, 131073, 6, 327686, 327681, 1, 327687, 196609, 0, 393223, 131073, 0, 393224, 65537, 0, 393222, 393217, 0, 458758, 65537, 0, 458759, 131073, 0, 458760, 393217, 0, 458761, 458753, 0, 458762, 196609, 0, 458763, 196609, 0, 458764, 196609, 0, 393228, 131073, 0, 393227, 262145, 1, 393226, 327681, 0, 393225, 327681, 1, 327689, 327681, 1, 327690, 65537, 0, 327691, 327681, 1, 327692, 262145, 0, 262156, 327681, 1, 196620, 327681, 0, 131084, 65537, 0, 131083, 458753, 0, 131082, 393217, 0, 131081, 458753, 0, 196618, 131073, 0, 196619, 196609, 0, 262155, 65537, 0, 262154, 65537, 0, 262153, 262145, 1, 327688, 65537, 0, 262152, 458753, 0, 196617, 131073, 0, 262151, 458753, 0, 196615, 262145, 0, 196616, 262145, 1, 131080, 131073, 0, 131079, 262145, 1, 131078, 1, 0)
+layer_1/tile_data = PackedInt32Array(10, 524289, 4, 65546, 524289, 5, 65544, 65537, 5, 8, 65537, 4, 65538, 1, 5, 2, 1, 4)
+
+[node name="LifePickup" parent="tile24" instance=ExtResource("2_w144u")]
+position = Vector2(164, 108)
 
 [node name="Player" parent="." instance=ExtResource("2_nhlrq")]
-position = Vector2(16, 100)
+position = Vector2(59, 105)
 
 [node name="Weapon" parent="Player" index="2" node_paths=PackedStringArray("LevelManager")]
 LevelManager = NodePath("../../LevelManager")
 
 [node name="Enemies" type="Node2D" parent="."]
 
+[node name="Skeleton" parent="Enemies" instance=ExtResource("7_8ekhd")]
+position = Vector2(275, 75)
+
+[node name="Skeleton2" parent="Enemies" instance=ExtResource("7_8ekhd")]
+position = Vector2(172, 165)
+
 [node name="GameUI" parent="." instance=ExtResource("3_jeiri")]
-offset_left = 29.0
-offset_top = 8.0
-offset_right = 29.0
-offset_bottom = 8.0
+offset_left = 59.0
+offset_top = 157.0
+offset_right = 59.0
+offset_bottom = 157.0
 
 [node name="LevelUI" parent="." instance=ExtResource("4_nporb")]
 offset_left = 175.0
-offset_top = 89.0
+offset_top = 104.0
 offset_right = 175.0
-offset_bottom = 89.0
+offset_bottom = 104.0
 
 [node name="LevelManager" parent="." node_paths=PackedStringArray("level_UI", "tile_map") instance=ExtResource("5_2byvu")]
+selectable_tiles = 10
 level_UI = NodePath("../LevelUI")
 tile_map = NodePath("../tile24")
 

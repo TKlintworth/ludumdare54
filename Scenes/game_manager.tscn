@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://p085e47tmcun"]
+[gd_scene load_steps=4 format=3 uid="uid://p085e47tmcun"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_sya6k"]
 [ext_resource type="PackedScene" uid="uid://dteel3ydkoen0" path="res://Scenes/level1.tscn" id="2_wppr7"]
+[ext_resource type="AudioStream" uid="uid://dex6kjnsgqga6" path="res://assets/sounds/song.wav" id="3_fxuik"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_sya6k")
 scenes = [ExtResource("2_wppr7")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fxuik")
+autoplay = true

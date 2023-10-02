@@ -25,6 +25,8 @@ var active_lines = []
 
 var tile_size = 24
 
+var start_button_focused = false
+
 var MAX_Y
 var MAX_X
 
@@ -39,15 +41,25 @@ func _ready():
 	print(num_enemies)
 	level_UI.set_tiles_remaining_label_text(selectable_tiles)
 	level_UI.start_button_pressed.connect(start_level)
+	level_UI.start_button_focus_enter.connect(start_button_focus_enter)
+	level_UI.start_button_focus_exit.connect(start_button_focus_exit)
 	draw_tile_grid()
 	num_tiles_remaining = selectable_tiles
 	
-	
+func start_button_focus_enter():
+	print("focused")
+	start_button_focused = true
+
+func start_button_focus_exit():
+	start_button_focused = false
 
 func _input(event):
 	if(!is_active):
 		if Input.is_action_just_pressed("left_click"):
-			activate_tile()
+			# Check if youre clicking on the "start" button
+			print("FOXUED OR NAH: ", start_button_focused)
+			if(!start_button_focused):
+				activate_tile()
 			
 func activate_tile():
 	var global_mouse_pos = get_global_mouse_position()
@@ -234,8 +246,10 @@ func get_is_active():
 	return is_active
 
 func _on_enemy_died():
+	$AudioStreamPlayer.play()
 	enemies_node = self.get_parent().get_node("Enemies")
 	num_enemies = enemies_node.get_child_count()
+	GameManager.enemy_died()
 	print(num_enemies)
 	# If there are no enemies left, the level is over
 	if num_enemies - 1 <= 0:

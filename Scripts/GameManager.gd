@@ -27,6 +27,8 @@ var player_current_health
 
 signal player_current_lives_changed
 signal player_current_health_changed
+signal current_level_changed
+signal player_score_changed
 
 func change_level(index):
 	# TODO: Add some transition and then show the paused / tile selection screen again
@@ -35,15 +37,19 @@ func change_level(index):
 		get_tree().change_scene_to_file(game_over_scene)
 	else:
 		get_tree().change_scene_to_file(scenes[index])
+	current_level_changed.emit()
 	current_level_index = index
 	
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	MusicPlayer.play()
 	init_game()
 
 func _input(event):
 	if(Input.is_action_just_pressed("pause")):
 		pause_button_pressed()
+	if(Input.is_action_just_pressed("ui_right")):
+		change_level(2)
 
 func pause_button_pressed():
 	print("pause toggle")
@@ -57,7 +63,10 @@ func register_player(p):
 	player_current_health = p.CURRENT_HEALTH
 	p.player_died.connect(_on_player_died)
 	p.player_damage.connect(_on_player_damage)
-	
+
+#add type with unique score
+func enemy_died():
+	update_score(50)
 ### Signals
 func _on_player_died():
 	print("player died in game manager")
@@ -123,7 +132,16 @@ func init_game():
 func update_score(s):
 	print("score multi:", score_multiplier)
 	print("score val:", s)
+	player_score_changed.emit()
 	player_score += float(score_multiplier) * int(s)
+
+func update_lives(l):
+	player_current_lives += 1
+	player_current_lives_changed.emit()
+
+func update_player_health(h):
+	player_current_health += h
+	player_current_health_changed.emit()
 
 func update_score_multiplier(m):
 	score_multiplier = m

@@ -1,9 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://cp4hdbswcmujl"]
+[gd_scene load_steps=30 format=3 uid="uid://cp4hdbswcmujl"]
 
 [ext_resource type="PackedScene" uid="uid://cjded4e4tx0lq" path="res://Scenes/Enemy.tscn" id="1_ac4dq"]
 [ext_resource type="Script" path="res://Scripts/Pumpkin.gd" id="2_hdyet"]
 [ext_resource type="Texture2D" uid="uid://bw63oiw7qk4s7" path="res://assets/sprites/pumpkin_60x60.png" id="3_7gmev"]
+[ext_resource type="PackedScene" uid="uid://bx6qoo1j1uy3d" path="res://Scenes/Projectile.tscn" id="3_js8qn"]
 [ext_resource type="Texture2D" uid="uid://du1j0ispq00l7" path="res://assets/sprites/sheets/pumpkin_walk_60x60.png" id="4_do1bq"]
+[ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="5_7kblr"]
+[ext_resource type="Texture2D" uid="uid://cg55or76yktil" path="res://assets/sprites/sheets/pumpkin_attack_60x60.png" id="5_qjwye"]
+[ext_resource type="Script" path="res://Scripts/Idle.gd" id="6_bptcv"]
+[ext_resource type="Script" path="res://Scripts/Chase.gd" id="6_twyg7"]
+[ext_resource type="Script" path="res://Scripts/Explode.gd" id="7_xgp1l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_683bn"]
 atlas = ExtResource("4_do1bq")
@@ -24,6 +30,58 @@ region = Rect2(180, 0, 60, 60)
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1bcd"]
 atlas = ExtResource("4_do1bq")
 region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlrs7"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ilre"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib6hi"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wg05"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd6jn"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id8fk"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(300, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omod0"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(360, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efy4b"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(420, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu7th"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(480, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b60v"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(540, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p17aa"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(600, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3x4t"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(660, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bahb7"]
+atlas = ExtResource("5_qjwye")
+region = Rect2(720, 0, 60, 60)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n0s3u"]
 animations = [{
@@ -49,15 +107,86 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlrs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ilre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib6hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wg05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd6jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_id8fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omod0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efy4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu7th")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b60v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p17aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3x4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bahb7")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 12.0
 }]
 
 [node name="Enemy" instance=ExtResource("1_ac4dq")]
 script = ExtResource("2_hdyet")
-ProjectileScene = null
+ProjectileScene = ExtResource("3_js8qn")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_n0s3u")
-frame_progress = 0.29092
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(7.15256e-07, -2.5)
+
+[node name="StateMachine" type="Node" parent="." index="3"]
+script = ExtResource("5_7kblr")
+initial_state = NodePath("Chase")
+
+[node name="Chase" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("6_twyg7")
+
+[node name="Explode" type="Node" parent="StateMachine" index="1"]
+script = ExtResource("7_xgp1l")
+
+[node name="Idle" type="Node" parent="StateMachine" index="2"]
+script = ExtResource("6_bptcv")
+
+[node name="Raycasts" type="Node2D" parent="." index="4"]
+
+[node name="RayCastRight" type="RayCast2D" parent="Raycasts" index="0"]
+target_position = Vector2(50, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="Raycasts" index="1"]
+target_position = Vector2(-50, 0)
+
+[node name="RayCastDown" type="RayCast2D" parent="Raycasts" index="2"]
+
+[node name="RayCastUp" type="RayCast2D" parent="Raycasts" index="3"]
+target_position = Vector2(0, -50)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine/Explode" method="_on_animated_sprite_2d_animation_finished"]

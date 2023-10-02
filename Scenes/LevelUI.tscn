@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy6qfxvdwktkn"]
+[gd_scene load_steps=3 format=3 uid="uid://dy6qfxvdwktkn"]
 
 [ext_resource type="Script" path="res://Scripts/LevelUI.gd" id="1_4dmhb"]
+[ext_resource type="AudioStream" uid="uid://checo3xncclv2" path="res://assets/sounds/startGame.wav" id="2_nceov"]
 
 [node name="LevelUI" type="Control"]
 layout_mode = 3
@@ -30,13 +31,21 @@ text = "Select Active Tiles"
 layout_mode = 2
 text = "{Tiles} Tiles Remaining"
 
-[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" groups=["start_button"]]
 modulate = Color(0.0352941, 0.745098, 0, 1)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Start"
 
 [node name="MultiplierText" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "multiplier text here"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_nceov")
+
 [connection signal="button_up" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_button_up"]
+[connection signal="focus_entered" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_focus_entered"]
+[connection signal="focus_exited" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_focus_exited"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_mouse_exited"]

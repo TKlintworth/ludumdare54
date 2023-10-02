@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwhe2e4rva2td"]
+
+[ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="1_lgjns"]
+[ext_resource type="Script" path="res://Scripts/Chase.gd" id="2_6bbrh"]
+[ext_resource type="Script" path="res://Scripts/Explode.gd" id="3_5fpf7"]
+[ext_resource type="Script" path="res://Scripts/Idle.gd" id="4_se2fc"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_lgjns")
+initial_state = NodePath("Chase")
+
+[node name="Chase" type="Node" parent="."]
+script = ExtResource("2_6bbrh")
+
+[node name="Explode" type="Node" parent="."]
+script = ExtResource("3_5fpf7")
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("4_se2fc")

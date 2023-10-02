@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbdww7k6tq0rl"]
+
+[ext_resource type="Script" path="res://Scripts/LifePickup.gd" id="1_ccabi"]
+[ext_resource type="Texture2D" uid="uid://jlie3nax0rby" path="res://assets/sprites/lifePickup_48x48.png" id="1_l5tio"]
+[ext_resource type="AudioStream" uid="uid://bq7sn8ewdatox" path="res://assets/sounds/pickup.wav" id="3_lpapn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bw3yf"]
+
+[node name="LifePickup" type="Sprite2D" groups=["tag_pickup"]]
+texture = ExtResource("1_l5tio")
+script = ExtResource("1_ccabi")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bw3yf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lpapn")

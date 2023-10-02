@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://gpmkkv07fe8e"]
+[gd_scene load_steps=5 format=3 uid="uid://gpmkkv07fe8e"]
 
 [ext_resource type="Texture2D" uid="uid://b8icmg3j6px11" path="res://assets/sprites/candyBucket_48x48.png" id="1_3ek44"]
 [ext_resource type="Script" path="res://Scripts/Pickup.gd" id="2_fbtqq"]
+[ext_resource type="AudioStream" uid="uid://bq7sn8ewdatox" path="res://assets/sounds/pickup.wav" id="3_4d1nr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4c7l"]
 radius = 14.0
@@ -15,3 +16,6 @@ script = ExtResource("2_fbtqq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_c4c7l")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4d1nr")

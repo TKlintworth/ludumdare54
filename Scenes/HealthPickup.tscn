@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://ie365j5tfpgn"]
+
+[ext_resource type="Texture2D" uid="uid://djsxcqty5itma" path="res://assets/sprites/healthPickup_48x48.png" id="1_w174p"]
+[ext_resource type="Script" path="res://Scripts/HealthPickup.gd" id="2_peimv"]
+[ext_resource type="AudioStream" uid="uid://bq7sn8ewdatox" path="res://assets/sounds/pickup.wav" id="3_xv7re"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lrepa"]
+
+[node name="HealthPickup" type="Sprite2D" groups=["tag_pickup"]]
+texture = ExtResource("1_w174p")
+script = ExtResource("2_peimv")
+health_value = 50
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_lrepa")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xv7re")

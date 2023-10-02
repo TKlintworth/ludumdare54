@@ -63,6 +63,7 @@ func _process(delta):
 		
 
 func spawn_projectile(dir, spd, dmg):
+	$AudioStreamPlayer.play()
 	var proj = ProjectileScene.instantiate()
 	print(shoot_point.global_position)
 	proj.position = shoot_point.global_position

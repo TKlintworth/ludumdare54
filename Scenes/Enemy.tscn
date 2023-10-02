@@ -23,7 +23,7 @@ radius = 34.0147
 
 [node name="Enemy" type="Area2D" groups=["tag_enemy"]]
 collision_layer = 2
-collision_mask = 31
+collision_mask = 13
 script = ExtResource("1_2pf0g")
 ProjectileScene = ExtResource("2_cu8w4")
 
@@ -37,13 +37,14 @@ shape = SubResource("RectangleShape2D_5q24d")
 
 [node name="DodgeDetect" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 31
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DodgeDetect"]
 shape = SubResource("CircleShape2D_31a8x")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="DodgeDetect" to="." method="_on_dodge_detect_area_entered"]
 [connection signal="area_shape_entered" from="DodgeDetect" to="." method="_on_dodge_detect_area_shape_entered"]
