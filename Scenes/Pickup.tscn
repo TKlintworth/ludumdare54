@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://gpmkkv07fe8e"]
+
+[ext_resource type="Texture2D" uid="uid://b8icmg3j6px11" path="res://assets/sprites/candyBucket_48x48.png" id="1_3ek44"]
+[ext_resource type="Script" path="res://Scripts/Pickup.gd" id="2_fbtqq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4c7l"]
+radius = 14.0
+
+[node name="Pickup" type="Sprite2D" groups=["tag_pickup"]]
+position = Vector2(149, 94)
+texture = ExtResource("1_3ek44")
+script = ExtResource("2_fbtqq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_c4c7l")

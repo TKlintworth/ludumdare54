@@ -15,6 +15,6 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 	print("body shape entered")
 	print(body_rid)
 	print(body.name)
-	if(body.name == "TileMap"):
+	if(body.name == "tile24"):
 		print(body.get_coords_for_body_rid(body_rid))
 		get_parent().queue_free()

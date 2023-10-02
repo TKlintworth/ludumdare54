@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://boxy6h3fy1n1d"]
+
+[ext_resource type="PackedScene" uid="uid://d4hdgrc2sgj7g" path="res://Scenes/tile24.tscn" id="1_kp8mx"]
+[ext_resource type="PackedScene" uid="uid://cfipsyu3368kr" path="res://Scenes/player.tscn" id="2_nhlrq"]
+[ext_resource type="PackedScene" uid="uid://c654ajyjw7val" path="res://Scenes/GameUI.tscn" id="3_jeiri"]
+[ext_resource type="PackedScene" uid="uid://dy6qfxvdwktkn" path="res://Scenes/LevelUI.tscn" id="4_nporb"]
+[ext_resource type="PackedScene" uid="uid://bvtq8b55muo3y" path="res://Scenes/level_manager.tscn" id="5_2byvu"]
+
+[node name="level3" type="Node2D"]
+
+[node name="tile24" parent="." instance=ExtResource("1_kp8mx")]
+
+[node name="Player" parent="." instance=ExtResource("2_nhlrq")]
+position = Vector2(16, 100)
+
+[node name="Weapon" parent="Player" index="2" node_paths=PackedStringArray("LevelManager")]
+LevelManager = NodePath("../../LevelManager")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="GameUI" parent="." instance=ExtResource("3_jeiri")]
+offset_left = 29.0
+offset_top = 8.0
+offset_right = 29.0
+offset_bottom = 8.0
+
+[node name="LevelUI" parent="." instance=ExtResource("4_nporb")]
+offset_left = 175.0
+offset_top = 89.0
+offset_right = 175.0
+offset_bottom = 89.0
+
+[node name="LevelManager" parent="." node_paths=PackedStringArray("level_UI", "tile_map") instance=ExtResource("5_2byvu")]
+level_UI = NodePath("../LevelUI")
+tile_map = NodePath("../tile24")
+
+[editable path="Player"]

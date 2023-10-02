@@ -16,16 +16,11 @@ visible = false
 layout_mode = 2
 
 [node name="Board" type="VBoxContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_right = 1156.0
-offset_bottom = 652.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+offset_left = 1.0
+offset_right = 671.0
+offset_bottom = 430.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
 theme = ExtResource("2_ixaq4")
 theme_override_constants/separation = 48
 alignment = 1
@@ -62,6 +57,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Close Leaderboard"
+text = "Main Menu"
 
 [connection signal="pressed" from="Board/CloseButtonContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

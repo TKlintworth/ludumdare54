@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjded4e4tx0lq"]
+[gd_scene load_steps=7 format=3 uid="uid://cjded4e4tx0lq"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_2pf0g"]
 [ext_resource type="Texture2D" uid="uid://dqlhqpshnpe54" path="res://assets/sprites/skeleton_48x48.png" id="2_0xd5l"]
+[ext_resource type="PackedScene" uid="uid://j504aewimpsm" path="res://Scenes/fireball.tscn" id="2_cu8w4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ylrur"]
 animations = [{
@@ -15,22 +16,22 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5q24d"]
-size = Vector2(15.6667, 29)
+size = Vector2(12.6667, 13.6667)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_31a8x"]
-radius = 168.012
+radius = 34.0147
 
 [node name="Enemy" type="Area2D" groups=["tag_enemy"]]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_2pf0g")
+ProjectileScene = ExtResource("2_cu8w4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ylrur")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.499996, -3.5)
+position = Vector2(4.76837e-07, -0.5)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_5q24d")
 
@@ -43,5 +44,6 @@ shape = SubResource("CircleShape2D_31a8x")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="DodgeDetect" to="." method="_on_dodge_detect_area_entered"]
 [connection signal="area_shape_entered" from="DodgeDetect" to="." method="_on_dodge_detect_area_shape_entered"]

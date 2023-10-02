@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4rimfa2crtbg"]
+[gd_scene load_steps=7 format=3 uid="uid://c4rimfa2crtbg"]
 
 [ext_resource type="Texture2D" uid="uid://by3ruogvkyudj" path="res://assets/sprites/slingshot_48x48.png" id="1_mk52a"]
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="2_awlsa"]
 [ext_resource type="PackedScene" uid="uid://bx6qoo1j1uy3d" path="res://Scenes/Projectile.tscn" id="3_5048i"]
+[ext_resource type="Texture2D" uid="uid://bkne4021h16jx" path="res://assets/ui/bar_9x1.png" id="4_va4sr"]
+[ext_resource type="Texture2D" uid="uid://brctqae275tv3" path="res://assets/ui/slider_2x3.png" id="5_2wia0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qv85s"]
 animations = [{
@@ -17,10 +19,18 @@ animations = [{
 
 [node name="Weapon" type="AnimatedSprite2D"]
 position = Vector2(1, 0)
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_qv85s")
 script = ExtResource("2_awlsa")
 ProjectileScene = ExtResource("3_5048i")
+metadata/_edit_lock_ = true
 
 [node name="ShootPoint" type="Node2D" parent="."]
 position = Vector2(0, 4)
+
+[node name="ChargeBar" type="Sprite2D" parent="."]
+position = Vector2(-0.512524, 8.24285)
+texture = ExtResource("4_va4sr")
+
+[node name="ChargeKnob" type="Sprite2D" parent="ChargeBar"]
+position = Vector2(-4, 0)
+texture = ExtResource("5_2wia0")
