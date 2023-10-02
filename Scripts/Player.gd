@@ -1,14 +1,18 @@
 extends CharacterBody2D
 
 
-@export var SPEED = 250
+@export var SPEED = 125
 @export var MAX_HEALTH = 100
+#@export var MAX_LIVES = 10
 var CURRENT_HEALTH
+#var CURRENT_LIVES
 var level_manager
 signal player_died
+signal player_damage
 
 func _ready():
 	CURRENT_HEALTH = MAX_HEALTH
+	#CURRENT_LIVES = MAX_LIVES
 	GameManager.register_player(self)
 	level_manager = get_parent().get_node("LevelManager")
 
@@ -29,7 +33,13 @@ func _process(delta):
 	if(level_manager.get_is_active()):
 		if Input.is_action_just_pressed("ui_up"):
 			CURRENT_HEALTH -= 10
+			player_damage.emit(CURRENT_HEALTH)
 			print(CURRENT_HEALTH)
 		if (CURRENT_HEALTH <= 0):
 			player_died.emit()
 			queue_free()
+
+
+func _on_hit_area_entered(area):
+	if(area.get_parent().is_in_group("tag_pickup")):
+		area.get_parent().pick_up()

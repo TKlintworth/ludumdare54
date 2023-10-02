@@ -16,26 +16,25 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r2owm"]
-size = Vector2(7.16973, 61.9533)
+size = Vector2(1.87779, 20.3429)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sl8ht"]
-size = Vector2(7.16973, 61.9533)
+size = Vector2(1.87779, 20.3429)
 
 [node name="Player" type="CharacterBody2D" groups=["tag_player"]]
 collision_mask = 63
 script = ExtResource("1_xstow")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_xkr87")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-9.53674e-07, 2.5)
+position = Vector2(0.5, 1)
 scale = Vector2(5.85796, 1.08146)
 shape = SubResource("RectangleShape2D_r2owm")
 
 [node name="Weapon" parent="." instance=ExtResource("3_plyn5")]
-position = Vector2(21, 12)
+position = Vector2(10, 6)
 
 [node name="HitArea" type="Area2D" parent="."]
 position = Vector2(-9.53674e-07, 2.5)
@@ -43,5 +42,7 @@ scale = Vector2(5.85796, 1.08146)
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
-position = Vector2(1.628e-07, -2.38419e-07)
+position = Vector2(0.085354, -1.38701)
 shape = SubResource("RectangleShape2D_sl8ht")
+
+[connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_entered"]

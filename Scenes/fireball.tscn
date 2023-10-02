@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://j504aewimpsm"]
+
+[ext_resource type="PackedScene" uid="uid://bx6qoo1j1uy3d" path="res://Scenes/Projectile.tscn" id="1_tsa8s"]
+[ext_resource type="Texture2D" uid="uid://m5wkwc0uxm2f" path="res://assets/sprites/fireball_21x7.png" id="2_3hhax"]
+[ext_resource type="Script" path="res://Scripts/fireball.gd" id="2_lqmag"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_23qow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3hhax")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fireball" groups=["tag_enemy_projectile"] instance=ExtResource("1_tsa8s")]
+script = ExtResource("2_lqmag")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_23qow")
+
+[node name="CollisionShape2D" parent="HitArea" index="0"]
+position = Vector2(-7, 0)

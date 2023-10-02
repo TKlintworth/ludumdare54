@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://djibcfnfi55bp"]
+
+[ext_resource type="Script" path="res://Scripts/GameEndUI.gd" id="1_akpvb"]
+
+[node name="GameEndUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_akpvb")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="WinLoseLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "You Won OR LOST!"
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Your Score:"
+
+[node name="LeaderboardPosLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Leaderboard Position:"
+
+[node name="NameEntryBox" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter your name"
+expand_to_text_length = true
+
+[node name="SubmitScoreButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Submit High Score"
+
+[connection signal="text_changed" from="CenterContainer/VBoxContainer/NameEntryBox" to="." method="_on_name_entry_box_text_changed"]
+[connection signal="button_up" from="CenterContainer/VBoxContainer/SubmitScoreButton" to="." method="_on_submit_score_button_button_up"]

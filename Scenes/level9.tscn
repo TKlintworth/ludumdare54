@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0yqebnaaglcu"]
+
+[ext_resource type="PackedScene" uid="uid://d4hdgrc2sgj7g" path="res://Scenes/tile24.tscn" id="1_u0cie"]
+[ext_resource type="PackedScene" uid="uid://cfipsyu3368kr" path="res://Scenes/player.tscn" id="2_cy28g"]
+[ext_resource type="PackedScene" uid="uid://dy6qfxvdwktkn" path="res://Scenes/LevelUI.tscn" id="3_j7jo5"]
+[ext_resource type="PackedScene" uid="uid://c654ajyjw7val" path="res://Scenes/GameUI.tscn" id="4_tmfae"]
+[ext_resource type="PackedScene" uid="uid://bvtq8b55muo3y" path="res://Scenes/level_manager.tscn" id="5_2uti7"]
+
+[node name="level9" type="Node2D"]
+
+[node name="tile24" parent="." instance=ExtResource("1_u0cie")]
+
+[node name="Player" parent="." instance=ExtResource("2_cy28g")]
+
+[node name="Weapon" parent="Player" index="2" node_paths=PackedStringArray("LevelManager")]
+LevelManager = NodePath("../../LevelManager")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="LevelUI" parent="." instance=ExtResource("3_j7jo5")]
+
+[node name="GameUI" parent="." instance=ExtResource("4_tmfae")]
+
+[node name="LevelManager" parent="." node_paths=PackedStringArray("level_UI", "tile_map") instance=ExtResource("5_2uti7")]
+level_UI = NodePath("../LevelUI")
+tile_map = NodePath("../tile24")
+
+[editable path="Player"]

@@ -15,14 +15,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikvrw"]
-size = Vector2(26, 28)
+[sub_resource type="CircleShape2D" id="CircleShape2D_sv1dr"]
+radius = 3.0
 
 [node name="Projectile" type="Node2D" groups=["tag_projectile"]]
 script = ExtResource("1_x0vsw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_5cmm1")
 
 [node name="HitArea" type="Area2D" parent="."]
@@ -31,8 +30,8 @@ collision_mask = 11
 script = ExtResource("3_f0qbv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
-position = Vector2(-2, 2)
-shape = SubResource("RectangleShape2D_ikvrw")
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_sv1dr")
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
 [connection signal="area_entered" from="HitArea" to="HitArea" method="_on_area_entered"]

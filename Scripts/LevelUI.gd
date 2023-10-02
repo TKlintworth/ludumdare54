@@ -14,6 +14,10 @@ func set_tiles_remaining_label_text(text):
 	print(text)
 	$CenterContainer/VBoxContainer/TilesRemainingLabel.text = str(text) + " Tiles Remaining"
 
+func set_multiplier_text(text):
+	print(text)
+	$CenterContainer/VBoxContainer/MultiplierText.text = str(text) + "x score multiplier"
+
 
 func _on_start_button_button_up():
 	start_button_pressed.emit()

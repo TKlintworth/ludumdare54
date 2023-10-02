@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://cp4hdbswcmujl"]
+
+[ext_resource type="PackedScene" uid="uid://cjded4e4tx0lq" path="res://Scenes/Enemy.tscn" id="1_ac4dq"]
+[ext_resource type="Script" path="res://Scripts/Pumpkin.gd" id="2_hdyet"]
+[ext_resource type="Texture2D" uid="uid://bw63oiw7qk4s7" path="res://assets/sprites/pumpkin_60x60.png" id="3_7gmev"]
+[ext_resource type="Texture2D" uid="uid://du1j0ispq00l7" path="res://assets/sprites/sheets/pumpkin_walk_60x60.png" id="4_do1bq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_683bn"]
+atlas = ExtResource("4_do1bq")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g53no"]
+atlas = ExtResource("4_do1bq")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v67p0"]
+atlas = ExtResource("4_do1bq")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryal6"]
+atlas = ExtResource("4_do1bq")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1bcd"]
+atlas = ExtResource("4_do1bq")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n0s3u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7gmev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_683bn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g53no")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v67p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryal6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1bcd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Enemy" instance=ExtResource("1_ac4dq")]
+script = ExtResource("2_hdyet")
+ProjectileScene = null
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_n0s3u")
+frame_progress = 0.29092
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(7.15256e-07, -2.5)

@@ -23,7 +23,13 @@ PauseMenu="*res://Scenes/PauseMenu.tscn"
 
 [display]
 
+window/size/viewport_width=336
+window/size/viewport_height=216
 window/stretch/mode="viewport"
+
+[gui]
+
+theme/custom_font="res://assets/smallest_pixel-7.ttf"
 
 [input]
 
