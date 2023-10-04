@@ -34,30 +34,16 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node2D" parent="."]
-position = Vector2(27, -7)
 
 [node name="Skeleton" parent="Enemies" instance=ExtResource("3_o5sjv")]
-position = Vector2(198, 76)
+position = Vector2(207, 75)
 
 [node name="Skeleton2" parent="Enemies" instance=ExtResource("3_o5sjv")]
-position = Vector2(102, 79)
+position = Vector2(131, 108)
 
-[node name="LevelUI" parent="." instance=ExtResource("3_fp3yx")]
-offset_left = 174.0
-offset_top = 115.0
-offset_right = 174.0
-offset_bottom = 115.0
-
-[node name="GameUI" parent="." instance=ExtResource("4_y5dpf")]
-offset_left = 62.0
-offset_top = 158.0
-offset_right = 62.0
-offset_bottom = 158.0
-
-[node name="LevelManager" parent="." node_paths=PackedStringArray("level_UI", "tile_map") instance=ExtResource("5_saffp")]
-position = Vector2(20, -8)
+[node name="LevelManager" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("5_saffp")]
+alive_enemies = null
 selectable_tiles = 17
-level_UI = NodePath("../LevelUI")
 tile_map = NodePath("../tile24")
 
 [node name="Pickup" parent="." instance=ExtResource("6_2v73a")]
@@ -65,5 +51,28 @@ position = Vector2(165, 142)
 
 [node name="LifePickup" parent="." instance=ExtResource("7_goryj")]
 position = Vector2(146, 74)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameUI" parent="Control" instance=ExtResource("4_y5dpf")]
+layout_mode = 1
+offset_left = 62.0
+offset_top = 158.0
+offset_right = 62.0
+offset_bottom = 158.0
+
+[node name="LevelUI" parent="Control" instance=ExtResource("3_fp3yx")]
+layout_mode = 1
+offset_left = 174.0
+offset_top = 115.0
+offset_right = 174.0
+offset_bottom = 115.0
+metadata/_edit_lock_ = true
 
 [editable path="Player"]

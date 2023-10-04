@@ -148,6 +148,7 @@ radius = 3.0
 height = 13.4158
 
 [node name="Goblin" instance=ExtResource("1_vpkfc")]
+collision_mask = 45
 script = ExtResource("2_h0kij")
 
 [node name="AnimatedSprite2D" parent="." index="0"]

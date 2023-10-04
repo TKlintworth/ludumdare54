@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dw3va4qju8eps"]
+[gd_scene load_steps=5 format=3 uid="uid://dw3va4qju8eps"]
 
 [ext_resource type="PackedScene" uid="uid://d4hdgrc2sgj7g" path="res://Scenes/tile24.tscn" id="1_8e7nt"]
 [ext_resource type="PackedScene" uid="uid://cfipsyu3368kr" path="res://Scenes/player.tscn" id="1_weuwb"]
 [ext_resource type="PackedScene" uid="uid://bvtq8b55muo3y" path="res://Scenes/level_manager.tscn" id="2_6y351"]
 [ext_resource type="PackedScene" uid="uid://cp4hdbswcmujl" path="res://Scenes/Pumpkin.tscn" id="3_kl4j2"]
-[ext_resource type="PackedScene" uid="uid://dy6qfxvdwktkn" path="res://Scenes/LevelUI.tscn" id="5_wrfd3"]
-[ext_resource type="PackedScene" uid="uid://c654ajyjw7val" path="res://Scenes/GameUI.tscn" id="6_4dirb"]
 
 [node name="level2" type="Node2D"]
 
@@ -23,22 +21,11 @@ LevelManager = NodePath("../../LevelManager")
 
 [node name="Pumpkin1" parent="Enemies" instance=ExtResource("3_kl4j2")]
 position = Vector2(285, 75)
+collision_mask = 13
 
-[node name="GameUI" parent="." instance=ExtResource("6_4dirb")]
-offset_left = 56.0
-offset_top = 183.0
-offset_right = 56.0
-offset_bottom = 183.0
-
-[node name="LevelUI" parent="." instance=ExtResource("5_wrfd3")]
-offset_left = 171.0
-offset_top = 108.0
-offset_right = 171.0
-offset_bottom = 108.0
-
-[node name="LevelManager" parent="." node_paths=PackedStringArray("level_UI", "tile_map") instance=ExtResource("2_6y351")]
+[node name="LevelManager" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_6y351")]
+alive_enemies = 0
 selectable_tiles = 15
-level_UI = NodePath("../LevelUI")
 tile_map = NodePath("../tile24")
 
 [editable path="Player"]

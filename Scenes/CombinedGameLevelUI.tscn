@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs7w5dax3pwpg"]
+
+[ext_resource type="Script" path="res://Scripts/CombinedGameLevelUI.gd" id="1_8omnx"]
+[ext_resource type="PackedScene" uid="uid://c654ajyjw7val" path="res://Scenes/GameUI.tscn" id="1_k5x6k"]
+[ext_resource type="PackedScene" uid="uid://dy6qfxvdwktkn" path="res://Scenes/LevelUI.tscn" id="2_h8jig"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8omnx")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="GameUI" parent="MarginContainer" instance=ExtResource("1_k5x6k")]
+layout_mode = 2
+
+[node name="LevelUI" parent="MarginContainer" instance=ExtResource("2_h8jig")]
+layout_mode = 2

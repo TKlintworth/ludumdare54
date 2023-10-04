@@ -70,8 +70,10 @@ pause={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemies"
+2d_physics/layer_3="projectiles"
 2d_physics/layer_4="active_tiles"
 2d_physics/layer_5="inactive_tiles"
+2d_physics/layer_6="active_tiles_no_projectile_hit"
 
 [rendering]
 

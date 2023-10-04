@@ -34,45 +34,46 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node2D" parent="."]
-position = Vector2(35, -7)
 
 [node name="Skeleton" parent="Enemies" instance=ExtResource("7_eams1")]
-position = Vector2(264, 178)
+position = Vector2(299, 176)
 
 [node name="Skeleton2" parent="Enemies" instance=ExtResource("7_eams1")]
-position = Vector2(263, 130)
+position = Vector2(300, 126)
 
 [node name="Skeleton3" parent="Enemies" instance=ExtResource("7_eams1")]
-position = Vector2(262, 79)
+position = Vector2(298, 68)
 
 [node name="Skeleton4" parent="Enemies" instance=ExtResource("7_eams1")]
-position = Vector2(85, 177)
+position = Vector2(122, 170)
 
 [node name="Skeleton5" parent="Enemies" instance=ExtResource("7_eams1")]
-position = Vector2(179, 178)
+position = Vector2(186, 168)
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("8_ap0it")]
-position = Vector2(184, 119)
+position = Vector2(215, 115)
+collision_mask = 13
 
 [node name="Skeleton6" parent="Enemies" instance=ExtResource("7_eams1")]
-position = Vector2(-1, 104)
+position = Vector2(35, 95)
 
 [node name="LevelUI" parent="." instance=ExtResource("3_l03b6")]
-offset_left = 174.0
-offset_top = 111.0
-offset_right = 174.0
-offset_bottom = 111.0
+offset_left = 179.0
+offset_top = 108.0
+offset_right = 179.0
+offset_bottom = 108.0
+metadata/_edit_lock_ = true
 
 [node name="GameUI" parent="." instance=ExtResource("4_qhnyq")]
-offset_left = 55.0
-offset_top = 160.0
-offset_right = 55.0
-offset_bottom = 160.0
+offset_left = 63.0
+offset_top = 154.0
+offset_right = 63.0
+offset_bottom = 154.0
+metadata/_edit_lock_ = true
 
-[node name="LevelManager" parent="." node_paths=PackedStringArray("level_UI", "tile_map") instance=ExtResource("5_nwjrf")]
-position = Vector2(28, -8)
+[node name="LevelManager" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("5_nwjrf")]
+alive_enemies = null
 selectable_tiles = 20
-level_UI = NodePath("../LevelUI")
 tile_map = NodePath("../tile24")
 
 [node name="Pickup" parent="." instance=ExtResource("6_bveas")]

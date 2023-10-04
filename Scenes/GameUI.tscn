@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cufyatlrhmumg" path="res://assets/ui/healthBar_42x12.png" id="3_vh0r8"]
 [ext_resource type="Texture2D" uid="uid://5or130hqi6fu" path="res://assets/ui/health_36x10.png" id="4_6k6pi"]
 
-[node name="GameUI" type="Control"]
+[node name="GameUI" type="Control" node_paths=PackedStringArray("LivesLabel", "ScoreLabel", "HealthBar", "LevelLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,29 +13,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ocgvv")
+LivesLabel = NodePath("HBoxContainer/VBoxContainer/LivesTexture/LivesLabel")
+ScoreLabel = NodePath("HBoxContainer/VBoxContainer2/ScoreLabel")
+HealthBar = NodePath("HBoxContainer/VBoxContainer/TextureProgressBar")
+LevelLabel = NodePath("HBoxContainer/VBoxContainer2/LevelLabel")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 336.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="LivesTexture" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LivesTexture" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("1_fpr2f")
 stretch_mode = 4
 
-[node name="LivesLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/LivesTexture"]
+[node name="LivesLabel" type="Label" parent="HBoxContainer/VBoxContainer/LivesTexture"]
 layout_mode = 0
 offset_left = 24.0
 offset_top = -2.0
@@ -43,7 +44,7 @@ offset_right = 45.0
 offset_bottom = 17.0
 text = "10"
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 value = 100.0
 rounded = true
@@ -51,10 +52,19 @@ texture_under = ExtResource("3_vh0r8")
 texture_progress = ExtResource("4_6k6pi")
 texture_progress_offset = Vector2(3, 1)
 
-[node name="LevelLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Level 1 / 10"
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 8
+text = "000"

@@ -33,36 +33,47 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node2D" parent="."]
-position = Vector2(33, -8)
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("7_srwp7")]
-position = Vector2(31, 92)
+position = Vector2(59, 81)
+collision_mask = 13
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("7_srwp7")]
-position = Vector2(31, 163)
+position = Vector2(61, 152)
+collision_mask = 13
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("7_srwp7")]
-position = Vector2(114, 168)
+position = Vector2(150, 156)
+collision_mask = 13
 
-[node name="LevelUI" parent="." instance=ExtResource("3_dsapm")]
-offset_left = 179.0
-offset_top = 114.0
-offset_right = 179.0
-offset_bottom = 114.0
-
-[node name="GameUI" parent="." instance=ExtResource("4_xo40k")]
-offset_left = 59.0
-offset_top = 159.0
-offset_right = 59.0
-offset_bottom = 159.0
-
-[node name="LevelManager" parent="." node_paths=PackedStringArray("level_UI", "tile_map") instance=ExtResource("5_chxam")]
-position = Vector2(24, -10)
+[node name="LevelManager" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("5_chxam")]
+alive_enemies = null
 selectable_tiles = 15
-level_UI = NodePath("../LevelUI")
 tile_map = NodePath("../tile24")
 
 [node name="Pickup" parent="." instance=ExtResource("6_o06fk")]
 position = Vector2(135, 115)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameUI" parent="Control" instance=ExtResource("4_xo40k")]
+layout_mode = 1
+offset_left = 60.0
+offset_top = 160.0
+offset_right = 60.0
+offset_bottom = 160.0
+
+[node name="LevelUI" parent="Control" instance=ExtResource("3_dsapm")]
+layout_mode = 1
+offset_left = 170.0
+offset_top = 118.0
+offset_right = 170.0
+offset_bottom = 118.0
 
 [editable path="Player"]

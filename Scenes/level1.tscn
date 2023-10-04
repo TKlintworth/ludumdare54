@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dteel3ydkoen0"]
+[gd_scene load_steps=7 format=3 uid="uid://dteel3ydkoen0"]
 
 [ext_resource type="PackedScene" uid="uid://bvtq8b55muo3y" path="res://Scenes/level_manager.tscn" id="1_433uq"]
 [ext_resource type="PackedScene" uid="uid://d4hdgrc2sgj7g" path="res://Scenes/tile24.tscn" id="1_naaqm"]
-[ext_resource type="PackedScene" uid="uid://dy6qfxvdwktkn" path="res://Scenes/LevelUI.tscn" id="1_uv6qj"]
 [ext_resource type="PackedScene" uid="uid://cfipsyu3368kr" path="res://Scenes/player.tscn" id="2_u626u"]
 [ext_resource type="PackedScene" uid="uid://buagcpvr4mu2s" path="res://Scenes/Skeleton.tscn" id="5_mgk2v"]
 [ext_resource type="PackedScene" uid="uid://gpmkkv07fe8e" path="res://Scenes/Pickup.tscn" id="6_60ovm"]
-[ext_resource type="PackedScene" uid="uid://c654ajyjw7val" path="res://Scenes/GameUI.tscn" id="7_ncw7s"]
 [ext_resource type="PackedScene" uid="uid://dbdww7k6tq0rl" path="res://Scenes/LifePickup.tscn" id="10_b60mh"]
 
 [node name="level1" type="Node2D"]
@@ -38,34 +36,16 @@ metadata/_edit_lock_ = true
 [node name="Skeleton" parent="Enemies" instance=ExtResource("5_mgk2v")]
 position = Vector2(273, 151)
 
-[node name="LevelManager" parent="." node_paths=PackedStringArray("level_UI", "tile_map") instance=ExtResource("1_433uq")]
-selectable_tiles = 12
-level_UI = NodePath("../Control/LevelUI")
-tile_map = NodePath("../tile24")
-
 [node name="LifePickup" parent="." instance=ExtResource("10_b60mh")]
 position = Vector2(192, 164)
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-
-[node name="GameUI" parent="Control" instance=ExtResource("7_ncw7s")]
-layout_mode = 1
-offset_left = 64.0
-offset_top = 164.0
-offset_right = 64.0
-offset_bottom = 164.0
-
-[node name="LevelUI" parent="Control" instance=ExtResource("1_uv6qj")]
-layout_mode = 1
-offset_left = 169.0
-offset_top = 105.0
-offset_right = 169.0
-offset_bottom = 105.0
-
 [node name="Pickup" parent="." instance=ExtResource("6_60ovm")]
 position = Vector2(49, 44)
+
+[node name="LevelManager" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("1_433uq")]
+alive_enemies = 0
+selectable_tiles = 12
+tile_map = NodePath("../tile24")
 
 [editable path="Player"]
 [editable path="Player/Weapon"]

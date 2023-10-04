@@ -18,20 +18,39 @@ extends Node
 @export var leaderboard_scene = "res://addons/silent_wolf/Scores/Leaderboard.tscn"
 @export var player_max_lives = 10
 
+var ui : Node = null
 var current_level_index = 0
 var player_score = 0
 var winlose = ""
 var score_multiplier = 1
 var player_current_lives
-var player_current_health
+var player_current_health = 0
 
 signal player_current_lives_changed
 signal player_current_health_changed
 signal current_level_changed
 signal player_score_changed
 
+func level_complete():
+	ui.Level_UI.show()
+	ui.Level_UI.level_complete()
+
 func change_level(index):
 	# TODO: Add some transition and then show the paused / tile selection screen again
+	# Create a new timer and connect the timeout signal to the change_scene function
+	# Then start the timer
+	
+	print("change level: ", index)
+	await get_tree().create_timer(1.0).timeout
+	print("end change level")
+	_transition_to_scene(index)
+
+func _transition_to_scene(index):
+	print("transition to scene")
+	if(index == 1):
+		print("transition to level 1")
+		load_ui()
+	ui.Level_UI.level_start()
 	if(index >= len(scenes)):
 		winlose = "win"
 		get_tree().change_scene_to_file(game_over_scene)
@@ -40,6 +59,7 @@ func change_level(index):
 	current_level_changed.emit()
 	current_level_index = index
 	
+
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	MusicPlayer.play()
@@ -50,6 +70,24 @@ func _input(event):
 		pause_button_pressed()
 	if(Input.is_action_just_pressed("ui_right")):
 		change_level(2)
+		
+func load_ui():
+	if ui == null:
+		var ui_scene = preload("res://Scenes/CombinedGameLevelUI.tscn")
+		ui = ui_scene.instantiate()
+		ui.z_index = 5
+		get_tree().root.add_child(ui)
+		if(ui):
+			print("ui loaded")
+		else:
+			print("ui not loaded")
+		#ui.Level_UI.set_tiles_remaining_label_text(50)
+		
+func unload_ui():
+	if ui != null:
+		ui.queue_free()
+		ui = null
+
 
 func pause_button_pressed():
 	print("pause toggle")
@@ -67,6 +105,7 @@ func register_player(p):
 #add type with unique score
 func enemy_died():
 	update_score(50)
+
 ### Signals
 func _on_player_died():
 	print("player died in game manager")
@@ -128,6 +167,7 @@ func init_game():
 		"open_scene_on_close": "res://scenes/MainPage.tscn"
 	})
 	player_current_lives = player_max_lives
+	print(player_current_lives)
 	
 func update_score(s):
 	print("score multi:", score_multiplier)

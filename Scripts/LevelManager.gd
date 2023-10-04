@@ -2,7 +2,7 @@ extends Node2D
 
 @export var alive_enemies : int
 @export var selectable_tiles : int
-@export var level_UI : Control
+#@export var UI : Control
 @export var tile_map : TileMap
 
 var num_tiles_selected = 0
@@ -11,34 +11,33 @@ var num_enemies
 var enemies_node
 var is_active = false
 var tile_grid_lines = []
-
 var active_tiles = []
-
 var active_atlas_id = 0
 var inactive_atlas_id = 1
-
 var highlighted_x_idx
 var highlighted_y_idx
 var highlighted_line
-
 var active_lines = []
-
 var tile_size = 24
-
 var start_button_focused = false
-
 var MAX_Y
 var MAX_X
+var game_UI
+var level_UI
 
 func _ready():
+	print("Level manager ready")
 	MAX_Y = get_viewport().content_scale_size[1]
 	MAX_X = get_viewport().content_scale_size[0]
+	game_UI = get_node("/root/UI").Game_UI
+	level_UI = get_node("/root/UI").Level_UI #GameManager.ui.Level_UI
 	# get number of enemies
 	enemies_node = self.get_parent().get_node("Enemies")
 	for e in enemies_node.get_children():
 		e.enemy_died.connect(_on_enemy_died)
 	num_enemies = enemies_node.get_child_count()
 	print(num_enemies)
+
 	level_UI.set_tiles_remaining_label_text(selectable_tiles)
 	level_UI.start_button_pressed.connect(start_level)
 	level_UI.start_button_focus_enter.connect(start_button_focus_enter)
@@ -148,11 +147,17 @@ func _process(delta):
 			highlighted_line = rect
 
 func start_level():
-	level_UI.hide()
-	is_active = true
-	hide_tile_grid()
-	highlighted_line.queue_free()
-	draw_islands()
+	if(!level_UI.level_complete_mode):
+		print("START LEVEL")
+		level_UI.hide()
+		is_active = true
+		hide_tile_grid()
+		highlighted_line.queue_free()
+		draw_islands()
+	else:
+		print("level complete")
+		#level_UI.level_complete_mode = false
+		GameManager.change_level(GameManager.current_level_index + 1)
 
 func draw_islands():
 	for l in active_lines:
@@ -254,7 +259,8 @@ func _on_enemy_died():
 	# If there are no enemies left, the level is over
 	if num_enemies - 1 <= 0:
 		GameManager.update_score(100)
-		GameManager.change_level(GameManager.current_level_index + 1)
+		GameManager.level_complete()
+		#GameManager.change_level(GameManager.current_level_index + 1)
 
 func calculate_multiplier():
 	print("selectabl_tiles:", selectable_tiles)

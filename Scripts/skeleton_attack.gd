@@ -14,6 +14,7 @@ func enter(_msg := {}) -> void:
 	anim.play("attack")
 	var proj = ProjectileScene.instantiate()
 	proj.position = state_machine.me.position
+	#TODO: this is trying to be called when the player has already been deleted
 	var dir = (state_machine.player.position - state_machine.me.position).normalized()
 	# Come back and rotate the projectile
 	proj.create_projectile(dir, 250, 1)
