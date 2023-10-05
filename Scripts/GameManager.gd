@@ -25,11 +25,18 @@ var winlose = ""
 var score_multiplier = 1
 var player_current_lives
 var player_current_health = 0
+# Map different creatures to different scores
+var enemy_score_map = {
+	"Skeleton": 50,
+	"Pumpkin": 50,
+	"Goblin": 100
+}
 
 signal player_current_lives_changed
 signal player_current_health_changed
 signal current_level_changed
 signal player_score_changed
+signal multiplier_changed
 
 func level_complete():
 	ui.Level_UI.show()
@@ -50,12 +57,14 @@ func _transition_to_scene(index):
 	if(index == 1):
 		print("transition to level 1")
 		load_ui()
-	ui.Level_UI.level_start()
 	if(index >= len(scenes)):
 		winlose = "win"
 		get_tree().change_scene_to_file(game_over_scene)
 	else:
 		get_tree().change_scene_to_file(scenes[index])
+	# TODO: Clean this up
+	ui.Level_UI.show()
+	ui.Level_UI.show_start_ui()
 	current_level_changed.emit()
 	current_level_index = index
 	
@@ -81,6 +90,9 @@ func load_ui():
 			print("ui loaded")
 		else:
 			print("ui not loaded")
+	#else:
+	#	ui.show()
+		#ui.Game_UI.init()
 		#ui.Level_UI.set_tiles_remaining_label_text(50)
 		
 func unload_ui():
@@ -99,6 +111,7 @@ func pause_button_pressed():
 
 func register_player(p):
 	player_current_health = p.CURRENT_HEALTH
+	player_current_health_changed.emit()
 	p.player_died.connect(_on_player_died)
 	p.player_damage.connect(_on_player_damage)
 
@@ -169,11 +182,14 @@ func init_game():
 	player_current_lives = player_max_lives
 	print(player_current_lives)
 	
-func update_score(s):
+func update_score(s, multi=true):
 	print("score multi:", score_multiplier)
 	print("score val:", s)
+	if(multi):
+		player_score += float(score_multiplier) * int(s)
+	else:
+		player_score += int(s)
 	player_score_changed.emit()
-	player_score += float(score_multiplier) * int(s)
 
 func update_lives(l):
 	player_current_lives += 1
@@ -185,3 +201,4 @@ func update_player_health(h):
 
 func update_score_multiplier(m):
 	score_multiplier = m
+	multiplier_changed.emit()

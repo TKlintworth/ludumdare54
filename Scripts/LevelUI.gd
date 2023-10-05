@@ -17,6 +17,8 @@ func _ready():
 	start_button = $CenterContainer/VBoxContainer/StartButton
 	select_node = $CenterContainer/VBoxContainer/SelectTilesLabel
 	
+	GameManager.multiplier_changed.connect(_multiplier_changed)
+	
 func level_complete():
 	###
 	# Set UI to 
@@ -28,13 +30,17 @@ func level_complete():
 	if(label_node and select_node and start_button and multiplier_node):
 		label_node.hide()
 		select_node.text = "Level Complete"
+		#TODO: replace with score per level variable
+		#label_node.text = "+ " + "100 points"
+		#select_node.text = "Level Complete"
 		start_button.text = "Next Level"
 		multiplier_node.hide()
 
-func level_start():
+func show_start_ui():
 	print("level start level UI")
 	level_complete_mode = false
 	if(label_node and select_node and start_button and multiplier_node):
+		print("show stuff in level ui")
 		label_node.show()
 		select_node.text = "Select Active Tiles"
 		start_button.text = "Start"
@@ -72,3 +78,6 @@ func _on_start_button_mouse_entered():
 func _on_start_button_mouse_exited():
 	print("exited")
 	start_button_focus_exit.emit()
+
+func _multiplier_changed():
+	multiplier_node.text = str(GameManager.score_multiplier) + "x score multiplier"

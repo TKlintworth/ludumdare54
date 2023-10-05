@@ -24,6 +24,7 @@ var MAX_Y
 var MAX_X
 var game_UI
 var level_UI
+var points_for_level = 100
 
 func _ready():
 	print("Level manager ready")
@@ -75,7 +76,7 @@ func activate_tile():
 		
 		tile_map.set_cell(0, tile_mouse_pos, 1, atlas_coord)
 		level_UI.set_tiles_remaining_label_text(num_tiles_remaining)
-		level_UI.set_multiplier_text(GameManager.score_multiplier)
+		#level_UI.set_multiplier_text(GameManager.score_multiplier)
 	
 	else:
 		if(num_tiles_remaining > 0):
@@ -87,7 +88,7 @@ func activate_tile():
 			num_tiles_selected += 1
 			num_tiles_remaining -= 1
 			level_UI.set_tiles_remaining_label_text(num_tiles_remaining)
-			level_UI.set_multiplier_text(GameManager.score_multiplier)
+			#level_UI.set_multiplier_text(GameManager.score_multiplier)
 			active_tiles.append(tile_mouse_pos)
 			print(tile_mouse_pos)
 	
@@ -150,6 +151,7 @@ func start_level():
 	if(!level_UI.level_complete_mode):
 		print("START LEVEL")
 		level_UI.hide()
+		#level_UI.level_start()
 		is_active = true
 		hide_tile_grid()
 		highlighted_line.queue_free()
@@ -258,7 +260,7 @@ func _on_enemy_died():
 	print(num_enemies)
 	# If there are no enemies left, the level is over
 	if num_enemies - 1 <= 0:
-		GameManager.update_score(100)
+		GameManager.update_score(points_for_level, false)
 		GameManager.level_complete()
 		#GameManager.change_level(GameManager.current_level_index + 1)
 

@@ -12,7 +12,7 @@ func _ready():
 		print("CombinedGameLevelUI has a LevelUI node")
 	if($MarginContainer/GameUI.ScoreLabel):
 		print("CombinedGameLevelUI GameUI has a ScoreLabel")
-		$MarginContainer/GameUI.test()
+		#$MarginContainer/GameUI.test()
 	else:
 		print("CombinedGameLevelUI GameUI does not have a ScoreLabel")
 
