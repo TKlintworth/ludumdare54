@@ -9,6 +9,7 @@ var proj_speed
 var is_ready_to_shoot
 var is_charge_started
 var charge_start_time
+var able_to_shoot = false
 
 const MIN_DAMAGE = 50
 const MAX_DAMAGE = 150
@@ -31,7 +32,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	if(LevelManager.get_is_active()):
+	if(LevelManager.get_is_active() and able_to_shoot):
 		
 		cooldown += delta
 		if cooldown >= SHOOT_COOLDOWN:
