@@ -48,12 +48,10 @@ func show_start_ui():
 	
 func set_tiles_remaining_label_text(text):
 	print("set tiles remaining: ", text)
-	#var label_node = get_node("CenterContainer/VBoxContainer/TilesRemainingLabel")
 	if label_node:
 		label_node.text = str(text) + " Tiles Remaining"
 	else:
 		print("Label node not found")
-	#$CenterContainer/VBoxContainer/TilesRemainingLabel.text = str(text) + " Tiles Remaining"
 
 func set_multiplier_text(text):
 	print(text)
@@ -61,7 +59,6 @@ func set_multiplier_text(text):
 
 func _on_start_button_button_up():
 	print("start button pressed on levelui")
-	#$AudioStreamPlayer.play()
 	start_button_pressed.emit()
 
 func _on_start_button_focus_entered():
