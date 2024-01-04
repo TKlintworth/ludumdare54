@@ -9,7 +9,6 @@ var proj_speed
 var is_ready_to_shoot
 var is_charge_started
 var charge_start_time
-var able_to_shoot = false
 
 const MIN_DAMAGE = 50
 const MAX_DAMAGE = 150
@@ -32,18 +31,19 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	if(LevelManager.get_is_active() and able_to_shoot):
+	if(LevelManager.get_is_active() and !LevelManager.get_levelui_ui_mode()):
 		
 		cooldown += delta
 		if cooldown >= SHOOT_COOLDOWN:
 			is_ready_to_shoot = true
-		
+		print(Input.is_action_just_pressed("left_click"))
 		if(Input.is_action_just_pressed("left_click") and is_ready_to_shoot):
 			charge_start_time = Time.get_unix_time_from_system()
 			is_charge_started = true
 			is_ready_to_shoot = false
 		
 		if(Input.is_action_just_released("left_click") and is_charge_started):
+			print("ACTION JUST RELEASED: LEFT CLICK")
 			cooldown = 0
 			is_charge_started = false
 			var time_diff = Time.get_unix_time_from_system() - charge_start_time;

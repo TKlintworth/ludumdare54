@@ -9,6 +9,7 @@ var multiplier_node
 var start_button
 var select_node
 var level_complete_mode = false
+var ui_mode = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("level ui")
@@ -26,6 +27,7 @@ func level_complete():
 	# 	Next Level
 	###
 	print("level complete level UI")
+	ui_mode = true
 	level_complete_mode = true
 	if(label_node and select_node and start_button and multiplier_node):
 		label_node.hide()
@@ -39,6 +41,7 @@ func level_complete():
 func show_start_ui():
 	print("level start level UI")
 	level_complete_mode = false
+	ui_mode = true
 	if(label_node and select_node and start_button and multiplier_node):
 		print("show stuff in level ui")
 		label_node.show()
@@ -59,6 +62,7 @@ func set_multiplier_text(text):
 
 func _on_start_button_button_up():
 	print("start button pressed on levelui")
+	ui_mode = false
 	start_button_pressed.emit()
 
 func _on_start_button_focus_entered():

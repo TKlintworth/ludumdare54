@@ -54,6 +54,7 @@ anchor_bottom = 1.0
 offset_top = 49.896
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 0
 
 [node name="StartButton" type="Button" parent="VBoxContainer" groups=["start_button"]]
 modulate = Color(0.0352941, 0.745098, 0, 1)

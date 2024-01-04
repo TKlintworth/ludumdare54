@@ -25,6 +25,7 @@ var MAX_X
 var game_UI
 var level_UI
 var points_for_level = 100
+var levelui_ui_mode 
 
 func _ready():
 	print("Level manager ready")
@@ -32,6 +33,8 @@ func _ready():
 	MAX_X = get_viewport().content_scale_size[0]
 	game_UI = get_node("/root/UI").Game_UI
 	level_UI = get_node("/root/UI").Level_UI #GameManager.ui.Level_UI
+	levelui_ui_mode = level_UI.ui_mode
+	print(levelui_ui_mode)
 	# get number of enemies
 	enemies_node = self.get_parent().get_node("Enemies")
 	for e in enemies_node.get_children():
@@ -158,6 +161,7 @@ func start_level():
 		draw_islands()
 	else:
 		print("level complete")
+		#is_active = true
 		#level_UI.level_complete_mode = false
 		GameManager.change_level(GameManager.current_level_index + 1)
 
@@ -251,6 +255,9 @@ func hide_tile_grid():
 
 func get_is_active():
 	return is_active
+
+func get_levelui_ui_mode():
+	return level_UI.ui_mode
 
 func _on_enemy_died():
 	$AudioStreamPlayer.play()
