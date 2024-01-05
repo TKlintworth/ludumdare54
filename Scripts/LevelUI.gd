@@ -12,7 +12,6 @@ var level_complete_mode = false
 var ui_mode = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("level ui")
 	label_node = get_node("CenterContainer/VBoxContainer/TilesRemainingLabel")
 	multiplier_node = $CenterContainer/VBoxContainer/MultiplierText
 	start_button = $CenterContainer/VBoxContainer/StartButton
@@ -26,7 +25,6 @@ func level_complete():
 	# Level Complete
 	# 	Next Level
 	###
-	print("level complete level UI")
 	ui_mode = true
 	level_complete_mode = true
 	if(label_node and select_node and start_button and multiplier_node):
@@ -39,18 +37,15 @@ func level_complete():
 		multiplier_node.hide()
 
 func show_start_ui():
-	print("level start level UI")
 	level_complete_mode = false
 	ui_mode = true
 	if(label_node and select_node and start_button and multiplier_node):
-		print("show stuff in level ui")
 		label_node.show()
 		select_node.text = "Select Active Tiles"
 		start_button.text = "Start"
 		multiplier_node.show()
 	
 func set_tiles_remaining_label_text(text):
-	print("set tiles remaining: ", text)
 	if label_node:
 		label_node.text = str(text) + " Tiles Remaining"
 	else:

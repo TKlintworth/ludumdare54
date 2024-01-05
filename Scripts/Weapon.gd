@@ -3,6 +3,9 @@ extends AnimatedSprite2D
 @export var ProjectileScene : PackedScene
 @export var LevelManager : Node
 
+@onready var ChargeBar = $ChargeBar
+@onready var ChargeKnob = $ChargeBar/ChargeKnob
+
 var shoot_point
 var player
 var proj_speed
@@ -18,7 +21,9 @@ const MAX_PROJ_SPEED = 500
 
 const MAX_CHARGE_TIME = 3
 const SHOOT_COOLDOWN = 1
+const MAX_OFFSET_PIXELS = 9
 var cooldown
+var current_charge_time = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,38 +35,47 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	if(LevelManager.get_is_active() and !LevelManager.get_levelui_ui_mode()):
-		
+
+		# Handle charge start
+		if Input.is_action_just_pressed("left_click") and is_ready_to_shoot:
+			is_charge_started = true
+			is_ready_to_shoot = false
+			current_charge_time = 0  # Initialize or reset the charge time
+			ChargeKnob.set_offset(Vector2(0, 0))  # Initialize the ChargeKnob's offset
+
+		# Update charge if it has started
+		if is_charge_started:
+			current_charge_time += delta
+			# Ensure charge time doesn't exceed maximum
+			current_charge_time = min(current_charge_time, MAX_CHARGE_TIME)
+			# Calculate fraction of the MAX_CHARGE_TIME that has passed
+			var frac = current_charge_time / MAX_CHARGE_TIME
+			# Calculate new offset for ChargeKnob based on the fraction of MAX_CHARGE_TIME
+			var new_offset_x = frac * MAX_OFFSET_PIXELS
+			ChargeKnob.set_offset(Vector2(new_offset_x, 0))
+
+		# Handle charge release and fire
+		if Input.is_action_just_released("left_click") and is_charge_started:
+			# ChargeKnob returns to initial position
+			ChargeKnob.set_offset(Vector2(0, 0))
+			# Calculate time difference and fractional charge for determining projectile speed and damage
+			var frac = current_charge_time / MAX_CHARGE_TIME
+			var p_speed = MIN_PROJ_SPEED + frac * (MAX_PROJ_SPEED - MIN_PROJ_SPEED)
+			var p_dmg = MIN_DAMAGE + frac * (MAX_DAMAGE - MIN_DAMAGE)
+			# Reset charge related variables
+			is_charge_started = false
+			cooldown = 0
+			# Determine projectile direction and spawn it
+			var global_mouse_pos = get_global_mouse_position()
+			var proj_direction = (global_mouse_pos - shoot_point.global_position).normalized()
+			spawn_projectile(proj_direction, p_speed, p_dmg)
+
+		# Handle shoot cooldown
 		cooldown += delta
 		if cooldown >= SHOOT_COOLDOWN:
 			is_ready_to_shoot = true
-		print(Input.is_action_just_pressed("left_click"))
-		if(Input.is_action_just_pressed("left_click") and is_ready_to_shoot):
-			charge_start_time = Time.get_unix_time_from_system()
-			is_charge_started = true
-			is_ready_to_shoot = false
-		
-		if(Input.is_action_just_released("left_click") and is_charge_started):
-			print("ACTION JUST RELEASED: LEFT CLICK")
-			cooldown = 0
-			is_charge_started = false
-			var time_diff = Time.get_unix_time_from_system() - charge_start_time;
-			
-			var frac = time_diff / MAX_CHARGE_TIME
-			
-			var p_speed = MIN_PROJ_SPEED + frac * (MAX_PROJ_SPEED - MIN_PROJ_SPEED)
-			var p_dmg = MIN_DAMAGE + frac * (MAX_DAMAGE - MIN_DAMAGE)
-			
-			print("SPEED:", p_speed)
-			print("DMG: ", p_dmg)
-			
-			var global_mouse_pos = get_global_mouse_position()
-			var player_pos = player.global_position
-			var proj_direction = (global_mouse_pos - shoot_point.global_position).normalized()
-			spawn_projectile(proj_direction, p_speed, p_dmg)
-			
-		
+
 
 func spawn_projectile(dir, spd, dmg):
 	$AudioStreamPlayer.play()
