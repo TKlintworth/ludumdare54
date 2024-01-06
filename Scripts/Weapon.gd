@@ -65,6 +65,10 @@ func _process(delta):
 			var p_dmg = MIN_DAMAGE + frac * (MAX_DAMAGE - MIN_DAMAGE)
 			# Reset charge related variables
 			is_charge_started = false
+			
+			var frac = current_charge_time / MAX_CHARGE_TIME
+			var calculated_damage = MIN_DAMAGE + frac * (MAX_DAMAGE - MIN_DAMAGE)
+			
 			cooldown = 0
 			# Determine projectile direction and spawn it
 			var global_mouse_pos = get_global_mouse_position()
