@@ -71,7 +71,8 @@ func _transition_to_scene(index):
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	MusicPlayer.play()
+	# Bandaid to skip the first few seconds of silence in the audio clip
+	MusicPlayer.play(4.5)
 	init_game()
 
 func _input(event):
