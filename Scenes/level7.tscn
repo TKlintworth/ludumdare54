@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ca8cux4cj8t4o"]
+[gd_scene load_steps=7 format=3 uid="uid://ca8cux4cj8t4o"]
 
 [ext_resource type="PackedScene" uid="uid://d4hdgrc2sgj7g" path="res://Scenes/tile24.tscn" id="1_grbq7"]
 [ext_resource type="PackedScene" uid="uid://cfipsyu3368kr" path="res://Scenes/player.tscn" id="2_5sk65"]
-[ext_resource type="PackedScene" uid="uid://dy6qfxvdwktkn" path="res://Scenes/LevelUI.tscn" id="3_fp3yx"]
 [ext_resource type="PackedScene" uid="uid://buagcpvr4mu2s" path="res://Scenes/Skeleton.tscn" id="3_o5sjv"]
-[ext_resource type="PackedScene" uid="uid://c654ajyjw7val" path="res://Scenes/GameUI.tscn" id="4_y5dpf"]
 [ext_resource type="PackedScene" uid="uid://bvtq8b55muo3y" path="res://Scenes/level_manager.tscn" id="5_saffp"]
 [ext_resource type="PackedScene" uid="uid://gpmkkv07fe8e" path="res://Scenes/Pickup.tscn" id="6_2v73a"]
 [ext_resource type="PackedScene" uid="uid://dbdww7k6tq0rl" path="res://Scenes/LifePickup.tscn" id="7_goryj"]
@@ -51,28 +49,5 @@ position = Vector2(165, 142)
 
 [node name="LifePickup" parent="." instance=ExtResource("7_goryj")]
 position = Vector2(146, 74)
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GameUI" parent="Control" instance=ExtResource("4_y5dpf")]
-layout_mode = 1
-offset_left = 62.0
-offset_top = 158.0
-offset_right = 62.0
-offset_bottom = 158.0
-
-[node name="LevelUI" parent="Control" instance=ExtResource("3_fp3yx")]
-layout_mode = 1
-offset_left = 174.0
-offset_top = 115.0
-offset_right = 174.0
-offset_bottom = 115.0
-metadata/_edit_lock_ = true
 
 [editable path="Player"]

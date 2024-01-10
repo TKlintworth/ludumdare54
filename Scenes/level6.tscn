@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://pnkk31xxmmgt"]
+[gd_scene load_steps=6 format=3 uid="uid://pnkk31xxmmgt"]
 
 [ext_resource type="PackedScene" uid="uid://d4hdgrc2sgj7g" path="res://Scenes/tile24.tscn" id="1_8ifeb"]
 [ext_resource type="PackedScene" uid="uid://cfipsyu3368kr" path="res://Scenes/player.tscn" id="2_d8ju8"]
-[ext_resource type="PackedScene" uid="uid://dy6qfxvdwktkn" path="res://Scenes/LevelUI.tscn" id="3_dsapm"]
-[ext_resource type="PackedScene" uid="uid://c654ajyjw7val" path="res://Scenes/GameUI.tscn" id="4_xo40k"]
 [ext_resource type="PackedScene" uid="uid://bvtq8b55muo3y" path="res://Scenes/level_manager.tscn" id="5_chxam"]
 [ext_resource type="PackedScene" uid="uid://gpmkkv07fe8e" path="res://Scenes/Pickup.tscn" id="6_o06fk"]
 [ext_resource type="PackedScene" uid="uid://cp4hdbswcmujl" path="res://Scenes/Pumpkin.tscn" id="7_srwp7"]
@@ -53,27 +51,5 @@ tile_map = NodePath("../tile24")
 
 [node name="Pickup" parent="." instance=ExtResource("6_o06fk")]
 position = Vector2(135, 115)
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GameUI" parent="Control" instance=ExtResource("4_xo40k")]
-layout_mode = 1
-offset_left = 60.0
-offset_top = 160.0
-offset_right = 60.0
-offset_bottom = 160.0
-
-[node name="LevelUI" parent="Control" instance=ExtResource("3_dsapm")]
-layout_mode = 1
-offset_left = 170.0
-offset_top = 118.0
-offset_right = 170.0
-offset_bottom = 118.0
 
 [editable path="Player"]

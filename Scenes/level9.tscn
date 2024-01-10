@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0yqebnaaglcu"]
+[gd_scene load_steps=8 format=3 uid="uid://b0yqebnaaglcu"]
 
 [ext_resource type="PackedScene" uid="uid://d4hdgrc2sgj7g" path="res://Scenes/tile24.tscn" id="1_u0cie"]
 [ext_resource type="PackedScene" uid="uid://cfipsyu3368kr" path="res://Scenes/player.tscn" id="2_cy28g"]
-[ext_resource type="PackedScene" uid="uid://dy6qfxvdwktkn" path="res://Scenes/LevelUI.tscn" id="3_j7jo5"]
 [ext_resource type="PackedScene" uid="uid://buagcpvr4mu2s" path="res://Scenes/Skeleton.tscn" id="3_spxel"]
-[ext_resource type="PackedScene" uid="uid://c654ajyjw7val" path="res://Scenes/GameUI.tscn" id="4_tmfae"]
 [ext_resource type="PackedScene" uid="uid://cp4hdbswcmujl" path="res://Scenes/Pumpkin.tscn" id="4_vnyhx"]
 [ext_resource type="PackedScene" uid="uid://bvtq8b55muo3y" path="res://Scenes/level_manager.tscn" id="5_2uti7"]
 [ext_resource type="PackedScene" uid="uid://dbdww7k6tq0rl" path="res://Scenes/LifePickup.tscn" id="6_ih1r3"]
@@ -48,19 +46,6 @@ position = Vector2(227, 123)
 [node name="Enemy" parent="Enemies" instance=ExtResource("4_vnyhx")]
 position = Vector2(159, 120)
 collision_mask = 13
-
-[node name="LevelUI" parent="." instance=ExtResource("3_j7jo5")]
-offset_left = 164.0
-offset_top = 113.0
-offset_right = 164.0
-offset_bottom = 113.0
-metadata/_edit_lock_ = true
-
-[node name="GameUI" parent="." instance=ExtResource("4_tmfae")]
-offset_left = 65.0
-offset_top = 155.0
-offset_right = 65.0
-offset_bottom = 155.0
 
 [node name="LevelManager" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("5_2uti7")]
 alive_enemies = null

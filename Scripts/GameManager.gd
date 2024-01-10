@@ -19,7 +19,7 @@ extends Node
 @export var player_max_lives = 10
 
 var ui : Node = null
-var current_level_index = 0
+var current_level_index = 1
 var player_score = 0
 var winlose = ""
 var score_multiplier = 1
@@ -65,8 +65,8 @@ func _transition_to_scene(index):
 	# TODO: Clean this up
 	ui.Level_UI.show()
 	ui.Level_UI.show_start_ui()
-	current_level_changed.emit()
 	current_level_index = index
+	current_level_changed.emit()
 	
 
 func _ready():
