@@ -35,6 +35,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	ChargeBar.visible = true if is_charge_started else false
 	if(LevelManager.get_is_active() and !LevelManager.get_levelui_ui_mode()):
 
 		# Handle charge start
