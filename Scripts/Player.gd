@@ -48,6 +48,9 @@ func take_damage(dmg):
 	$AudioStreamPlayer.play()
 	CURRENT_HEALTH -= dmg
 	player_damage.emit(CURRENT_HEALTH)
+	$AnimatedSprite2D.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	$AnimatedSprite2D.modulate = Color.WHITE
 
 func _on_hit_area_entered(area):
 	if(area.get_parent().is_in_group("tag_pickup")):
