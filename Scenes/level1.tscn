@@ -37,7 +37,7 @@ metadata/_edit_lock_ = true
 [node name="Skeleton" parent="Enemies" instance=ExtResource("5_mgk2v")]
 position = Vector2(273, 151)
 ProjectileScene = ExtResource("4_37mkx")
-MAX_HEALTH = 300.0
+MAX_HEALTH = 50.0
 
 [node name="LifePickup" parent="." instance=ExtResource("10_b60mh")]
 position = Vector2(192, 164)

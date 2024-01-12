@@ -35,9 +35,9 @@ func update(delta: float) -> void:
 	var direction_interest = []
 	var danger = []
 	for item in moveable_directions:
-		print("RAYCAST RETURN: ", state_machine.me.raycast_in_dir(item, 20))
+		#print("RAYCAST RETURN: ", state_machine.me.raycast_in_dir(item, 20))
 		direction_interest.append(item.dot(dir))
-		print("ITEM: ", item)
+		#print("ITEM: ", item)
 		if(state_machine.me.raycast_in_dir(item, 20)):
 			danger.append(5)
 		else:

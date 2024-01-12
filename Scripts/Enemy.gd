@@ -36,6 +36,7 @@ func _ready():
 	level_manager = self.get_parent().get_parent().get_node("LevelManager")
 
 func attack(dir, spd, dmg):
+	print("attack called")
 	var proj = ProjectileScene.instantiate()
 	proj.position = position
 	proj.create_projectile(dir, spd, dmg)
