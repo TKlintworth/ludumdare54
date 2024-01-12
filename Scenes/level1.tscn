@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dteel3ydkoen0"]
+[gd_scene load_steps=8 format=3 uid="uid://dteel3ydkoen0"]
 
 [ext_resource type="PackedScene" uid="uid://bvtq8b55muo3y" path="res://Scenes/level_manager.tscn" id="1_433uq"]
 [ext_resource type="PackedScene" uid="uid://d4hdgrc2sgj7g" path="res://Scenes/tile24.tscn" id="1_naaqm"]
 [ext_resource type="PackedScene" uid="uid://cfipsyu3368kr" path="res://Scenes/player.tscn" id="2_u626u"]
+[ext_resource type="PackedScene" uid="uid://j504aewimpsm" path="res://Scenes/fireball.tscn" id="4_37mkx"]
 [ext_resource type="PackedScene" uid="uid://buagcpvr4mu2s" path="res://Scenes/Skeleton.tscn" id="5_mgk2v"]
 [ext_resource type="PackedScene" uid="uid://gpmkkv07fe8e" path="res://Scenes/Pickup.tscn" id="6_60ovm"]
 [ext_resource type="PackedScene" uid="uid://dbdww7k6tq0rl" path="res://Scenes/LifePickup.tscn" id="10_b60mh"]
@@ -35,6 +36,8 @@ metadata/_edit_lock_ = true
 
 [node name="Skeleton" parent="Enemies" instance=ExtResource("5_mgk2v")]
 position = Vector2(273, 151)
+ProjectileScene = ExtResource("4_37mkx")
+MAX_HEALTH = 300.0
 
 [node name="LifePickup" parent="." instance=ExtResource("10_b60mh")]
 position = Vector2(192, 164)

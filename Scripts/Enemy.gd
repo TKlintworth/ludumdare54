@@ -85,6 +85,10 @@ func _on_area_entered(area):
 
 func take_damage(damage):
 	current_health -= damage
+	print("Enemy taking damage")
+	$AnimatedSprite2D.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	$AnimatedSprite2D.modulate = Color.WHITE
 	if current_health <= 0:
 		enemy_died.emit()
 		queue_free()
