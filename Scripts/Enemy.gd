@@ -71,9 +71,7 @@ func _process(delta):
 				time_since_last_action = 0
 				attack(Vector2(-1, 0), 250, 1)
 		
-		if current_health <= 0:
-			enemy_died.emit()
-			queue_free()
+		
 
 func _on_area_entered(area):
 	if !area.get_parent().is_in_group("tag_enemy_projectile"):
@@ -81,11 +79,15 @@ func _on_area_entered(area):
 			var node = area.get_parent()
 			print("node:", node)
 			print("current health:", current_health)
-			current_health -= node.get_damage()
+			#current_health -= node.get_damage()
+			take_damage(node.get_damage())
 			node.queue_free()
 
-
-
+func take_damage(damage):
+	current_health -= damage
+	if current_health <= 0:
+		enemy_died.emit()
+		queue_free()
 
 func raycast_in_dir(to, dist):
 	var space_state = get_world_2d().direct_space_state
