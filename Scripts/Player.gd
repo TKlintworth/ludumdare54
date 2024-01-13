@@ -24,8 +24,17 @@ func _physics_process(delta):
 		var direction_y = Input.get_axis("up", "down")
 		
 		var dir = Vector2(direction_x, direction_y).normalized()
-
+		
+		# TODO: 
+		# When we look to the left we need to make sure we still shoot from that direction
+		# Make sure Weapon moves to the correct spot
 		velocity = dir * SPEED
+		if(abs(velocity.x) > 0 and dir.x < 0):
+			print("velocity: ", velocity)
+		#if(dir.x < 0):
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false
 		
 		if(velocity > Vector2(0,0)):
 			$AnimatedSprite2D.play("walk")
