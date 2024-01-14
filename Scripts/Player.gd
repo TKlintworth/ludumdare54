@@ -4,9 +4,12 @@ extends CharacterBody2D
 @export var SPEED = 125
 @export var MAX_HEALTH = 100
 #@export var MAX_LIVES = 10
+@onready var weapon = get_node("Weapon")
+
 var CURRENT_HEALTH
 #var CURRENT_LIVES
 var level_manager
+
 signal player_died
 signal player_damage
 
@@ -29,19 +32,27 @@ func _physics_process(delta):
 		# When we look to the left we need to make sure we still shoot from that direction
 		# Make sure Weapon moves to the correct spot
 		velocity = dir * SPEED
-		if(abs(velocity.x) > 0 and dir.x < 0):
-			print("velocity: ", velocity)
-		#if(dir.x < 0):
-			$AnimatedSprite2D.flip_h = true
-		else:
-			$AnimatedSprite2D.flip_h = false
-		
-		if(velocity > Vector2(0,0)):
+		var abs_vel = Vector2(abs(velocity.x), abs(velocity.y))
+		if(dir.x < 0):
+			if(abs_vel.x > 0):
+				flip_horizontally("left")
+		elif(dir.x > 0):
+			flip_horizontally("right")
+		if(abs_vel > Vector2(0,0)):
 			$AnimatedSprite2D.play("walk")
 		else:
 			$AnimatedSprite2D.play("idle")
 
 		move_and_slide()
+func flip_horizontally(direction):
+	if(direction == "left"):
+		$AnimatedSprite2D.flip_h = true
+		weapon.flip_h = true
+		weapon.position = Vector2(-9,6)
+	else:
+		$AnimatedSprite2D.flip_h = false
+		weapon.flip_h = false
+		weapon.position = Vector2(10, 6)
 
 func _process(delta):
 	if(level_manager.get_is_active()):

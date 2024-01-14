@@ -21,6 +21,7 @@ animations = [{
 [node name="Weapon" type="AnimatedSprite2D"]
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_qv85s")
+flip_h = true
 script = ExtResource("2_awlsa")
 ProjectileScene = ExtResource("3_5048i")
 metadata/_edit_lock_ = true
