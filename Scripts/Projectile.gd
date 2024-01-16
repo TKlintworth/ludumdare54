@@ -15,10 +15,14 @@ func create_projectile(direction, s, d):
 	damage = d
 	print("create projectile")
 	is_fired = true
+	var d_vec = (GameManager.get_player_position() - position).normalized()
+	look_at(GameManager.get_player_position())
+	rotation = atan2(d_vec.y, d_vec.x) + PI
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(is_fired):
+		#$AnimatedSprite2D.rotation_degrees = 90
 		#position.x += (dir * speed * delta).x
 		#position.y += (dir * speed * delta).y
 		var new_position = position + dir * speed * delta

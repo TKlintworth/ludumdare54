@@ -24,6 +24,7 @@ var player_score = 0
 var winlose = ""
 var score_multiplier = 1
 var player_current_lives
+var player_current_position
 var player_current_health = 0
 # Map different creatures to different scores
 var enemy_score_map = {
@@ -203,3 +204,6 @@ func update_player_health(h):
 func update_score_multiplier(m):
 	score_multiplier = m
 	multiplier_changed.emit()
+
+func get_player_position():
+	return player_current_position

@@ -42,8 +42,9 @@ func _physics_process(delta):
 			$AnimatedSprite2D.play("walk")
 		else:
 			$AnimatedSprite2D.play("idle")
-
+		GameManager.player_current_position = position
 		move_and_slide()
+
 func flip_horizontally(direction):
 	if(direction == "left"):
 		$AnimatedSprite2D.flip_h = true
