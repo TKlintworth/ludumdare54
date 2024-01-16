@@ -39,6 +39,7 @@ func attack(dir, spd, dmg):
 	print("attack called")
 	var proj = ProjectileScene.instantiate()
 	proj.position = position
+	#proj.rotation_degrees = 45.0
 	proj.create_projectile(dir, spd, dmg)
 	get_tree().root.add_child(proj)
 
