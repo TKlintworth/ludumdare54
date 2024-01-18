@@ -54,7 +54,9 @@ func _process(delta):
 			var frac = current_charge_time / MAX_CHARGE_TIME
 			# Calculate new offset for ChargeKnob based on the fraction of MAX_CHARGE_TIME
 			var new_offset_x = frac * MAX_OFFSET_PIXELS
-			ChargeKnob.set_offset(Vector2(new_offset_x, 0))
+			ChargeKnob.offset = ChargeKnob.offset.lerp(Vector2(new_offset_x, 0), delta * 2)
+			# lerp the ChargeKnob's offset to the new offset
+			#ChargeKnob.set_offset(Vector2(new_offset_x, 0))
 
 		# Handle charge release and fire
 		if Input.is_action_just_released("left_click") and is_charge_started:
