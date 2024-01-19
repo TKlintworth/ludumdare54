@@ -13,6 +13,9 @@ var level_manager
 signal player_died
 signal player_damage
 
+func get_active_camera() -> Camera2D:
+	return GlobalCamera
+
 func _ready():
 	CURRENT_HEALTH = MAX_HEALTH
 	#CURRENT_LIVES = MAX_LIVES

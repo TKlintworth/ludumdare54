@@ -17,6 +17,8 @@ extends Node
 @export var game_over_scene = "res://Scenes/GameEndUI.tscn"
 @export var leaderboard_scene = "res://addons/silent_wolf/Scores/Leaderboard.tscn"
 @export var player_max_lives = 10
+@export var randomStrength: float = 5.0
+@export var shakeFade: float = 5.0
 
 var ui : Node = null
 var current_level_index = 1
@@ -32,12 +34,25 @@ var enemy_score_map = {
 	"Pumpkin": 50,
 	"Goblin": 100
 }
+var camera 
+var camera_offset
+var rng = RandomNumberGenerator.new()
+var shake_strength: float = 0.0
 
 signal player_current_lives_changed
 signal player_current_health_changed
 signal current_level_changed
 signal player_score_changed
 signal multiplier_changed
+
+func apply_shake():
+	shake_strength = randomStrength
+
+func random_offset() -> Vector2:
+	return Vector2(rng.randf_range(-shake_strength, shake_strength), rng.randf_range(-shake_strength, shake_strength))
+
+func get_active_camera() -> Camera2D:
+	return GlobalCamera
 
 func level_complete():
 	ui.Level_UI.show()
@@ -68,13 +83,21 @@ func _transition_to_scene(index):
 	ui.Level_UI.show_start_ui()
 	current_level_index = index
 	current_level_changed.emit()
-	
+
+func _physics_process(delta):
+	if(shake_strength > 0):
+		shake_strength = lerpf(shake_strength, 0, shakeFade * delta)
+		camera.offset = camera_offset + random_offset() * shake_strength
+	else:
+		camera.offset = camera_offset
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	# Bandaid to skip the first few seconds of silence in the audio clip
 	MusicPlayer.play(4.5)
 	init_game()
+	camera = GlobalCamera
+	camera_offset = camera.offset
 
 func _input(event):
 	if(Input.is_action_just_pressed("pause")):
@@ -101,7 +124,6 @@ func unload_ui():
 	if ui != null:
 		ui.queue_free()
 		ui = null
-
 
 func pause_button_pressed():
 	print("pause toggle")
@@ -138,6 +160,7 @@ func _on_player_damage(h):
 	player_current_health = h
 	print("player current health:",h)
 	player_current_health_changed.emit()
+	apply_shake()
 
 func get_all_scores():
 	var sw_result: Dictionary = await SilentWolf.Scores.get_scores(200).sw_get_scores_complete
