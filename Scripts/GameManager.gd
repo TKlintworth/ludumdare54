@@ -21,6 +21,7 @@ extends Node
 @export var shakeFade: float = 5.0
 
 var ui : Node = null
+var game_UI
 var current_level_index = 1
 var player_score = 0
 var winlose = ""
@@ -160,6 +161,7 @@ func _on_player_damage(h):
 	player_current_health = h
 	print("player current health:",h)
 	player_current_health_changed.emit()
+	game_UI.flash_screen()
 	apply_shake()
 
 func get_all_scores():
