@@ -8,8 +8,6 @@ var FlashRect
 var flash_duration = 0.3
 var flashing = false
 
-signal GameUIReady 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	LivesLabel = $HBoxContainer/VBoxContainer/LivesTexture/LivesLabel
@@ -26,7 +24,7 @@ func _ready():
 	GameManager.player_score_changed.connect(_player_score_changed)
 	GameManager.multiplier_changed.connect(_multiplier_changed)
 	
-	GameUIReady.emit()
+	GameManager.game_UI = self
 
 func _process(delta):
 	if flashing:
@@ -38,7 +36,7 @@ func init():
 func flash_screen():
 	FlashRect.modulate.a = 1
 	flashing = true
-	await get_tree().create_timer(flash_duration)
+	await get_tree().create_timer(flash_duration).timeout
 	flashing = false
 
 func _player_current_lives_changed():
