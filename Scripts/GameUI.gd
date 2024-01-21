@@ -5,7 +5,7 @@ var ScoreLabel
 var HealthBar
 var LevelLabel
 var FlashRect
-var flash_duration = 0.3
+var flash_duration = 0.15
 var flashing = false
 
 # Called when the node enters the scene tree for the first time.
@@ -34,7 +34,7 @@ func init():
 	HealthBar.value = GameManager.player_current_health
 
 func flash_screen():
-	FlashRect.modulate.a = 1
+	FlashRect.modulate.a = 0.75
 	flashing = true
 	await get_tree().create_timer(flash_duration).timeout
 	flashing = false

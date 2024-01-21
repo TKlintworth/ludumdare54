@@ -63,7 +63,7 @@ func _input(event):
 			print("FOXUED OR NAH: ", start_button_focused)
 			if(!start_button_focused):
 				activate_tile()
-			
+
 func activate_tile():
 	var global_mouse_pos = get_global_mouse_position()
 	var tile_mouse_pos = tile_map.local_to_map(global_mouse_pos)
@@ -142,13 +142,36 @@ func _process(delta):
 			rect.points = [
 				Vector2(tile_size * x_idx, tile_size * y_idx),
 				Vector2(tile_size * (x_idx + 1), tile_size * y_idx),
-				Vector2(tile_size * (x_idx + 1), tile_size * (y_idx + 1)),
-				Vector2(tile_size * x_idx, tile_size * (y_idx + 1)),
-				Vector2(tile_size * x_idx, tile_size * y_idx)
+				#Vector2(tile_size * (x_idx + 1), tile_size * (y_idx + 1)),
+				#Vector2(tile_size * x_idx, tile_size * (y_idx + 1)),
+				#Vector2(tile_size * x_idx, tile_size * y_idx)
 			]
 			
 			add_child(rect)
 			highlighted_line = rect
+
+func draw_line_at_edge(i, j, direction, grid, tile_size):
+	var line = Line2D.new()
+	line.width = 2
+	line.default_color = Color(1, 0, 0)  # Example: Red color for the line
+	var start_point
+	var end_point
+	match direction:
+		"right":
+			start_point = Vector2(tile_size * (j + 1), tile_size * i)
+			end_point = Vector2(tile_size * (j + 1), tile_size * (i + 1))
+		"down":
+			start_point = Vector2(tile_size * j, tile_size * (i + 1))
+			end_point = Vector2(tile_size * (j + 1), tile_size * (i + 1))
+		"left":
+			start_point = Vector2(tile_size * j, tile_size * i)
+			end_point = Vector2(tile_size * j, tile_size * (i + 1))
+		"up":
+			start_point = Vector2(tile_size * j, tile_size * i)
+			end_point = Vector2(tile_size * (j + 1), tile_size * i)
+
+	line.points = [start_point, end_point]
+	add_child(line)
 
 func start_level():
 	if(!level_UI.level_complete_mode):
@@ -194,7 +217,40 @@ func draw_islands():
 			islands.append(island)
 
 	for item in islands:
+		print("item:", item)
 		draw_perim(item)
+
+### NEW START
+func dfs(i, j, grid, visit, tile_size, direction):
+	# instead of returning 1 where he returns  1, we'd stick a line there.
+	# draw a line on the edge of a tile 
+	
+		if (i >= len(grid) 
+			or j >= len(grid[0]) 
+			or i < 0 
+			or j < 0 
+			or grid [i][j] == 0):
+				return 1
+		if ([i, j] in visit):
+			return 0
+		
+		visit.add([i,j])
+		var perim = dfs(i, j + 1, grid, visit, tile_size, "right")
+		perim += dfs(i + 1, j, grid, visit, tile_size, "down")
+		perim += dfs(i, j - 1, grid, visit, tile_size, "left")
+		perim += dfs(i - 1, j, grid, visit, tile_size, "up")
+		return perim
+
+func island_perimeter(grid):
+	var visit = {
+		"item": null,
+	}
+	for i in range(len(grid)):
+		for j in range(len(grid[0])):
+			if grid[i][j]:
+				dfs(i, j, grid, visit, tile_size, "")
+
+### NEW END
 
 func draw_perim(selected_idxs):
 	# Initialize min and max coordinates
