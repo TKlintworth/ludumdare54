@@ -218,45 +218,87 @@ func draw_islands():
 
 	for island in islands:
 		print("island indices:", island)
-		draw_perim(island)
-		#island_perimeter(island)
+		#draw_perim(island)
+		# List of Vector2s: [(1,1),(1,2), ...] representing indices of each tile in the island
+		island_perimeter(island)
 
 ### NEW START
-func dfs(i, j, grid, visit, tile_size, direction):
-	print("i: ", i)
-	print("j: ", j)
-	print("visit: ", visit)
-	print("tile_size: ", tile_size)
-	print("direction: ", direction)
+func dfs2(tile: Vector2, island_tiles: Array, visited: Array, tile_size: int) -> void:
+	var key = str(tile)
+	if key in visited:
+		return
+	visited.append(key)
+
+	var directions = [Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)]  # Right, Left, Down, Up
+	for dir in directions:
+		var neighbor = tile + dir
+		if not island_tiles.has(neighbor):
+			# This is an edge tile in this direction, perform drawing or marking logic here
+			draw_line(tile, dir, tile_size)
+		#elif not visited.has(str(neighbor)):
+			#dfs(neighbor, island_tiles, visited, tile_size)
+
+func contains_vector2(array, vector):
+	for item in array:
+		if item.x == vector.x and item.y == vector.y:
+			return true
+	return false
+
+func dfs(tile_coords: Vector2, island_indices, visited): #tile_size, direction):
+	print("position: ", tile_coords)
+	print("island_indices: ", island_indices)
+	print("visited: ", visited)
+	#print("tile_size: ", tile_size)
+	#print("direction: ", direction)
+	visited[str(tile_coords)] = true
+	var directions = [Vector2(0,1), Vector2(1,0), Vector2(0,-1), Vector2(-1,0)] # Down, Right, Up, Left
+	var neighbor_directions = ['down', 'right', 'up', 'left']
+	
+	for i in range(directions.size()):
+		print(directions[i])
+		var dir = directions[i]
+		var neighbor = tile_coords + dir
+		print("neighbor: ", neighbor)
+		print("island_indices.has(neighbor): ", island_indices.has(neighbor))
+		#if not island_indices.has(neighbor): this seems to return incorrectly?
+		if not contains_vector2(island_indices, neighbor):
+			#print("")
+			print("This neighbor is not in the selected tiles! Draw a line in dir:", neighbor_directions[i])
+		else:
+			print("Neighbor is part of the island: ", neighbor)
 	
 	# instead of returning 1 where he returns  1, we'd stick a line there.
 	# draw a line on the edge of a tile 
 		
 	# Conditions that we should draw a line
-	if (i >= len(grid) 
-		or j >= len(grid[0]) 
-		or i < 0 
-		or j < 0 
-		or grid [i][j] == 0):
-			return 1
-	if ([i, j] in visit):
-		return 0
+	#if (position.x >= len(island_indices) 
 	
-	visit.add([i,j])
-	var perim = dfs(i, j + 1, grid, visit, tile_size, "right")
-	perim += dfs(i + 1, j, grid, visit, tile_size, "down")
-	perim += dfs(i, j - 1, grid, visit, tile_size, "left")
-	perim += dfs(i - 1, j, grid, visit, tile_size, "up")
-	return perim
+	#	or j >= len(island_indices[0]) 
+	#	or i < 0 
+	#	or j < 0 
+	#	or island_indices [i][j] == 0):
+	#		print("we should draw a line some direction heres")
+	#		return 1
+	#if ([i, j] in visit):
+	#	return 0
+	
+	#visit.add([i,j])
+	#var perim = dfs(i, j + 1, island_indices, visit, tile_size, "right")
+	#perim += dfs(i + 1, j, island_indices, visit, tile_size, "down")
+	#perim += dfs(i, j - 1, island_indices, visit, tile_size, "left")
+	#perim += dfs(i - 1, j, island_indices, visit, tile_size, "up")
+	#return perim
 
-func island_perimeter(grid):
-	var visit = {
-		"item": null,
-	}
-	for i in range(len(grid)):
-		for j in range(len(grid[0])):
-			if grid[i][j]:
-				dfs(i, j, grid, visit, tile_size, "")
+func island_perimeter(island_indices):
+	print("island indices: ", island_indices)
+	var visited = {}
+	for tile in island_indices:
+		visited[str(tile)] = false
+	for tile_coords in island_indices:
+		#for j in range(len(island_indices[0])):
+		#if island_indices[i][j]:
+		if not visited[str(tile_coords)]:
+			dfs(tile_coords, island_indices, visited) #tile_size, "")
 
 ### NEW END
 
@@ -280,7 +322,7 @@ func draw_perim(selected_idxs):
 			max_x = x_idx
 		if y_idx > max_y:
 			max_y = y_idx
-	print("min y, min x:", min_y, min_x)
+	print("min y, min x:", min_y, " ", min_x)
 
 	# Create perimeter
 	var rect = Line2D.new()
