@@ -142,9 +142,9 @@ func _process(delta):
 			rect.points = [
 				Vector2(tile_size * x_idx, tile_size * y_idx),
 				Vector2(tile_size * (x_idx + 1), tile_size * y_idx),
-				#Vector2(tile_size * (x_idx + 1), tile_size * (y_idx + 1)),
-				#Vector2(tile_size * x_idx, tile_size * (y_idx + 1)),
-				#Vector2(tile_size * x_idx, tile_size * y_idx)
+				Vector2(tile_size * (x_idx + 1), tile_size * (y_idx + 1)),
+				Vector2(tile_size * x_idx, tile_size * (y_idx + 1)),
+				Vector2(tile_size * x_idx, tile_size * y_idx)
 			]
 			
 			add_child(rect)
@@ -216,30 +216,38 @@ func draw_islands():
 						
 			islands.append(island)
 
-	for item in islands:
-		print("item:", item)
-		draw_perim(item)
+	for island in islands:
+		print("island indices:", island)
+		draw_perim(island)
+		#island_perimeter(island)
 
 ### NEW START
 func dfs(i, j, grid, visit, tile_size, direction):
+	print("i: ", i)
+	print("j: ", j)
+	print("visit: ", visit)
+	print("tile_size: ", tile_size)
+	print("direction: ", direction)
+	
 	# instead of returning 1 where he returns  1, we'd stick a line there.
 	# draw a line on the edge of a tile 
-	
-		if (i >= len(grid) 
-			or j >= len(grid[0]) 
-			or i < 0 
-			or j < 0 
-			or grid [i][j] == 0):
-				return 1
-		if ([i, j] in visit):
-			return 0
 		
-		visit.add([i,j])
-		var perim = dfs(i, j + 1, grid, visit, tile_size, "right")
-		perim += dfs(i + 1, j, grid, visit, tile_size, "down")
-		perim += dfs(i, j - 1, grid, visit, tile_size, "left")
-		perim += dfs(i - 1, j, grid, visit, tile_size, "up")
-		return perim
+	# Conditions that we should draw a line
+	if (i >= len(grid) 
+		or j >= len(grid[0]) 
+		or i < 0 
+		or j < 0 
+		or grid [i][j] == 0):
+			return 1
+	if ([i, j] in visit):
+		return 0
+	
+	visit.add([i,j])
+	var perim = dfs(i, j + 1, grid, visit, tile_size, "right")
+	perim += dfs(i + 1, j, grid, visit, tile_size, "down")
+	perim += dfs(i, j - 1, grid, visit, tile_size, "left")
+	perim += dfs(i - 1, j, grid, visit, tile_size, "up")
+	return perim
 
 func island_perimeter(grid):
 	var visit = {
@@ -253,6 +261,7 @@ func island_perimeter(grid):
 ### NEW END
 
 func draw_perim(selected_idxs):
+	print("selected_idxs: ", selected_idxs)
 	# Initialize min and max coordinates
 	var min_x = INF
 	var min_y = INF
@@ -271,6 +280,7 @@ func draw_perim(selected_idxs):
 			max_x = x_idx
 		if y_idx > max_y:
 			max_y = y_idx
+	print("min y, min x:", min_y, min_x)
 
 	# Create perimeter
 	var rect = Line2D.new()

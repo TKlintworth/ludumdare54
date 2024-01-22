@@ -46,6 +46,7 @@ position = Vector2(192, 164)
 position = Vector2(49, 44)
 
 [node name="LevelManager" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("1_433uq")]
+alive_enemies = null
 selectable_tiles = 12
 tile_map = NodePath("../tile24")
 
