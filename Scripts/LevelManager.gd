@@ -150,25 +150,29 @@ func _process(delta):
 			add_child(rect)
 			highlighted_line = rect
 
-func draw_line_at_edge(i, j, direction, grid, tile_size):
+func draw_line_at_edge(coords, direction):
 	var line = Line2D.new()
+	print("coords, direction: ", coords, direction)
+	var x_idx = coords.x  
+	var y_idx = coords.y
+	
 	line.width = 2
-	line.default_color = Color(1, 0, 0)  # Example: Red color for the line
+	line.default_color = Color(0, .6, .2, 1)  # Example: Red color for the line
 	var start_point
 	var end_point
 	match direction:
 		"right":
-			start_point = Vector2(tile_size * (j + 1), tile_size * i)
-			end_point = Vector2(tile_size * (j + 1), tile_size * (i + 1))
+			start_point = Vector2(tile_size * (x_idx + 1), tile_size * y_idx)
+			end_point = Vector2(tile_size * (x_idx + 1), tile_size * (y_idx + 1))
 		"down":
-			start_point = Vector2(tile_size * j, tile_size * (i + 1))
-			end_point = Vector2(tile_size * (j + 1), tile_size * (i + 1))
+			start_point = Vector2(tile_size * x_idx, tile_size * (y_idx + 1))
+			end_point = Vector2(tile_size * (x_idx + 1), tile_size * (y_idx + 1))
 		"left":
-			start_point = Vector2(tile_size * j, tile_size * i)
-			end_point = Vector2(tile_size * j, tile_size * (i + 1))
+			start_point = Vector2(tile_size * x_idx, tile_size * y_idx)
+			end_point = Vector2(tile_size * x_idx, tile_size * (y_idx + 1))
 		"up":
-			start_point = Vector2(tile_size * j, tile_size * i)
-			end_point = Vector2(tile_size * (j + 1), tile_size * i)
+			start_point = Vector2(tile_size * x_idx, tile_size * y_idx)
+			end_point = Vector2(tile_size * (x_idx + 1), tile_size * y_idx)
 
 	line.points = [start_point, end_point]
 	add_child(line)
@@ -223,33 +227,16 @@ func draw_islands():
 		island_perimeter(island)
 
 ### NEW START
-func dfs2(tile: Vector2, island_tiles: Array, visited: Array, tile_size: int) -> void:
-	var key = str(tile)
-	if key in visited:
-		return
-	visited.append(key)
-
-	var directions = [Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)]  # Right, Left, Down, Up
-	for dir in directions:
-		var neighbor = tile + dir
-		if not island_tiles.has(neighbor):
-			# This is an edge tile in this direction, perform drawing or marking logic here
-			draw_line(tile, dir, tile_size)
-		#elif not visited.has(str(neighbor)):
-			#dfs(neighbor, island_tiles, visited, tile_size)
-
 func contains_vector2(array, vector):
 	for item in array:
 		if item.x == vector.x and item.y == vector.y:
 			return true
 	return false
 
-func dfs(tile_coords: Vector2, island_indices, visited): #tile_size, direction):
+func dfs(tile_coords: Vector2, island_indices, visited):
 	print("position: ", tile_coords)
 	print("island_indices: ", island_indices)
 	print("visited: ", visited)
-	#print("tile_size: ", tile_size)
-	#print("direction: ", direction)
 	visited[str(tile_coords)] = true
 	var directions = [Vector2(0,1), Vector2(1,0), Vector2(0,-1), Vector2(-1,0)] # Down, Right, Up, Left
 	var neighbor_directions = ['down', 'right', 'up', 'left']
@@ -260,34 +247,13 @@ func dfs(tile_coords: Vector2, island_indices, visited): #tile_size, direction):
 		var neighbor = tile_coords + dir
 		print("neighbor: ", neighbor)
 		print("island_indices.has(neighbor): ", island_indices.has(neighbor))
-		#if not island_indices.has(neighbor): this seems to return incorrectly?
 		if not contains_vector2(island_indices, neighbor):
-			#print("")
 			print("This neighbor is not in the selected tiles! Draw a line in dir:", neighbor_directions[i])
+			# Draw a line in that direction 
+			draw_line_at_edge(tile_coords, neighbor_directions[i])
 		else:
 			print("Neighbor is part of the island: ", neighbor)
-	
-	# instead of returning 1 where he returns  1, we'd stick a line there.
-	# draw a line on the edge of a tile 
-		
-	# Conditions that we should draw a line
-	#if (position.x >= len(island_indices) 
-	
-	#	or j >= len(island_indices[0]) 
-	#	or i < 0 
-	#	or j < 0 
-	#	or island_indices [i][j] == 0):
-	#		print("we should draw a line some direction heres")
-	#		return 1
-	#if ([i, j] in visit):
-	#	return 0
-	
-	#visit.add([i,j])
-	#var perim = dfs(i, j + 1, island_indices, visit, tile_size, "right")
-	#perim += dfs(i + 1, j, island_indices, visit, tile_size, "down")
-	#perim += dfs(i, j - 1, island_indices, visit, tile_size, "left")
-	#perim += dfs(i - 1, j, island_indices, visit, tile_size, "up")
-	#return perim
+			continue
 
 func island_perimeter(island_indices):
 	print("island indices: ", island_indices)
@@ -295,10 +261,8 @@ func island_perimeter(island_indices):
 	for tile in island_indices:
 		visited[str(tile)] = false
 	for tile_coords in island_indices:
-		#for j in range(len(island_indices[0])):
-		#if island_indices[i][j]:
 		if not visited[str(tile_coords)]:
-			dfs(tile_coords, island_indices, visited) #tile_size, "")
+			dfs(tile_coords, island_indices, visited)
 
 ### NEW END
 
