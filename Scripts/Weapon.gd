@@ -13,8 +13,8 @@ var is_ready_to_shoot
 var is_charge_started
 var charge_start_time
 
-const MIN_DAMAGE = 50
-const MAX_DAMAGE = 150
+@export var MIN_DAMAGE : int #Suggested 50
+@export var MAX_DAMAGE : int #Suggested 150
 
 const MIN_PROJ_SPEED = 100
 const MAX_PROJ_SPEED = 500

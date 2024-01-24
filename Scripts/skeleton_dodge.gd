@@ -6,12 +6,13 @@ var player
 var dodge_dir
 var distance
 const SPEED = 150
-const dodge_distance = 100
+const dodge_distance = 50
+const tile_size = 24
 
 var MAX_Y = 600
-var MIN_Y = 0
+var MIN_Y = tile_size
 var MAX_X = 1100
-var MIN_X = 0
+var MIN_X = tile_size
 
 const moveable_directions = [
 	Vector2(1, 0),
@@ -36,8 +37,9 @@ func enter(_msg := {}) -> void:
 		dodge_dir = Vector2(p_to_e[1], -p_to_e[0])
 	
 	distance = 0
-	MAX_Y = get_viewport().content_scale_size[1]
-	MAX_X = get_viewport().content_scale_size[0]
+	print("content_scale_size: ", get_viewport().content_scale_size)
+	MAX_Y = get_viewport().content_scale_size[1] - tile_size
+	MAX_X = get_viewport().content_scale_size[0] - tile_size
 	
 	var anim = state_machine.me.get_node("AnimatedSprite2D")
 	anim.play("walk")
