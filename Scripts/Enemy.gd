@@ -3,7 +3,7 @@ extends Area2D
 @export var ProjectileScene : PackedScene
 @export var MAX_HEALTH: float = 10
 var current_health
-signal enemy_died
+signal enemy_died (enemy)
 
 const MIN_ACTION_FREQ = 2
 const SPEED = 150
@@ -92,7 +92,7 @@ func take_damage(damage):
 	await get_tree().create_timer(0.1).timeout
 	$AnimatedSprite2D.modulate = Color.WHITE
 	if current_health <= 0:
-		enemy_died.emit()
+		enemy_died.emit(self)
 		queue_free()
 
 func raycast_in_dir(to, dist):
