@@ -16,7 +16,7 @@ extends Node
 
 @export var game_over_scene = "res://Scenes/GameEndUI.tscn"
 @export var leaderboard_scene = "res://addons/silent_wolf/Scores/Leaderboard.tscn"
-@export var skeleton_death_effect = "res://Scenes/SkeleDeathParticles.tscn"
+@export var skeleton_death_effect = preload("res://Scenes/SkeleDeathParticles.tscn")
 @export var player_max_lives = 10
 @export var randomStrength: float = 5.0
 @export var shakeFade: float = 5.0
@@ -142,10 +142,15 @@ func register_player(p):
 	p.player_damage.connect(_on_player_damage)
 
 #add type with unique score
-func enemy_died():
+func enemy_died(enemyPos):
+	print("Enemy Position: ", enemyPos)
 	# if the enemy is a skeleon, spawn and play the death particle effect
-	var particle_effect_instance = skeleton_death_effect.instance()
+	var particle_effect_instance = skeleton_death_effect.instantiate()
+	particle_effect_instance.position = enemyPos
+	particle_effect_instance.emitting = true
+	get_tree().root.add_child(particle_effect_instance)
 	#particle_effect_instance.position = 
+	
 	update_score(50)
 
 ### Signals

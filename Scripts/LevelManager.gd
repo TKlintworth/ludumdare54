@@ -331,11 +331,11 @@ func get_is_active():
 func get_levelui_ui_mode():
 	return level_UI.ui_mode
 
-func _on_enemy_died():
+func _on_enemy_died(enemyPos):
 	$AudioStreamPlayer.play()
 	enemies_node = self.get_parent().get_node("Enemies")
 	num_enemies = enemies_node.get_child_count()
-	GameManager.enemy_died()
+	GameManager.enemy_died(enemyPos)
 	print(num_enemies)
 	# If there are no enemies left, the level is over
 	if num_enemies - 1 <= 0:
