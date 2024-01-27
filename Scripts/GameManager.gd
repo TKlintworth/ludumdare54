@@ -18,7 +18,7 @@ extends Node
 @export var leaderboard_scene = "res://addons/silent_wolf/Scores/Leaderboard.tscn"
 @export var skeleton_death_effect = preload("res://Scenes/SkeleDeathParticles.tscn")
 @export var player_max_lives = 10
-@export var randomStrength: float = 5.0
+@export var shakeStrength: float = 5.0
 @export var shakeFade: float = 5.0
 
 var ui : Node = null
@@ -40,6 +40,7 @@ var camera
 var camera_offset
 var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
+var shake_fade: float = 0.0
 
 signal player_current_lives_changed
 signal player_current_health_changed
@@ -47,8 +48,15 @@ signal current_level_changed
 signal player_score_changed
 signal multiplier_changed
 
-func apply_shake():
-	shake_strength = randomStrength
+func apply_shake(strength=false, fade=false):
+	if(!strength):
+		shake_strength = shakeStrength
+	else:
+		shake_strength = strength
+	if(!fade):
+		shake_fade = shakeFade
+	else:
+		shake_fade = fade
 
 func random_offset() -> Vector2:
 	return Vector2(rng.randf_range(-shake_strength, shake_strength), rng.randf_range(-shake_strength, shake_strength))
@@ -150,7 +158,7 @@ func enemy_died(enemyPos):
 	particle_effect_instance.emitting = true
 	get_tree().root.add_child(particle_effect_instance)
 	#particle_effect_instance.position = 
-	
+	apply_shake(2, 1)
 	update_score(50)
 
 ### Signals
