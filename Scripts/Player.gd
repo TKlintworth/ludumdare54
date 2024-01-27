@@ -69,7 +69,8 @@ func _process(delta):
 			queue_free()
 
 func take_damage(dmg):
-	$AudioStreamPlayer.play()
+	#$AudioStreamPlayer.play()
+	AudioManager.play("player_hurt")
 	CURRENT_HEALTH -= dmg
 	player_damage.emit(CURRENT_HEALTH)
 	$AnimatedSprite2D.modulate = Color.RED

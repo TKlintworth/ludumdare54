@@ -12,8 +12,10 @@ func _process(delta):
 
 
 func _on_resume_button_button_up():
+	AudioManager.play("button_click")
 	GameManager.pause_button_pressed()
 
 
 func _on_quit_button_button_up():
+	AudioManager.play("button_click")
 	GameManager.quit()

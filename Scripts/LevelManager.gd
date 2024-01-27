@@ -69,6 +69,7 @@ func activate_tile():
 	var tile_mouse_pos = tile_map.local_to_map(global_mouse_pos)
 	
 	if(tile_mouse_pos in active_tiles):
+		AudioManager.play("select_tile")
 		# Reset tile to initial layer (inactive tile)
 		var tile_idx = active_tiles.find(tile_mouse_pos)
 		active_tiles.pop_at(tile_idx)
@@ -82,6 +83,7 @@ func activate_tile():
 		#level_UI.set_multiplier_text(GameManager.score_multiplier)
 	
 	else:
+		AudioManager.play("deselect_tile")
 		if(num_tiles_remaining > 0):
 			# Set tile to active tiles
 			# Set cell to collision atlas (id 1) at the same atlas_coord

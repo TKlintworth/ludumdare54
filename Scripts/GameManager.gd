@@ -17,7 +17,7 @@ extends Node
 @export var game_over_scene = "res://Scenes/GameEndUI.tscn"
 @export var leaderboard_scene = "res://addons/silent_wolf/Scores/Leaderboard.tscn"
 @export var skeleton_death_effect = preload("res://Scenes/SkeleDeathParticles.tscn")
-@export var player_max_lives = 10
+@export var player_max_lives = 3
 @export var shakeStrength: float = 5.0
 @export var shakeFade: float = 5.0
 
@@ -65,6 +65,7 @@ func get_active_camera() -> Camera2D:
 	return GlobalCamera
 
 func level_complete():
+	AudioManager.play("level_complete")
 	ui.Level_UI.show()
 	ui.Level_UI.level_complete()
 
@@ -104,7 +105,7 @@ func _physics_process(delta):
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	# Bandaid to skip the first few seconds of silence in the audio clip
-	MusicPlayer.play(4.5)
+	#MusicPlayer.play(4.5)
 	init_game()
 	camera = GlobalCamera
 	camera_offset = camera.offset
@@ -163,7 +164,9 @@ func enemy_died(enemyPos):
 
 ### Signals
 func _on_player_died():
+	# TODO: Clean up projectiles and stop enemies from moving
 	print("player died in game manager")
+	AudioManager.play("player_death_sound")
 	# If player has lives left, re load the current level
 	if(player_current_lives > 0):
 		change_level(current_level_index)

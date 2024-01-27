@@ -14,6 +14,7 @@ func _process(delta):
 func _on_play_button_up():
 	# Tell GameManager we want to load the first scene
 	print("Button pressed")
+	AudioManager.play("button_click")
 	GameManager.change_level(1)
 
 

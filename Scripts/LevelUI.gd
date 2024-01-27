@@ -57,6 +57,7 @@ func set_multiplier_text(text):
 
 func _on_start_button_button_up():
 	print("start button pressed on levelui")
+	AudioManager.play("button_click")
 	ui_mode = false
 	start_button_pressed.emit()
 

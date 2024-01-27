@@ -5,8 +5,6 @@
 
 [node name="LevelManager" type="Node2D"]
 script = ExtResource("1_evinx")
-alive_enemies = null
-selectable_tiles = null
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_fx8lt")

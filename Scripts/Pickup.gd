@@ -18,6 +18,6 @@ func _process(delta):
 
 func pick_up():
 	print("Picked up")
+	AudioManager.play("pickup1")
 	GameManager.update_score(score_value)
-	$AudioStreamPlayer.play()
 	queue_free()

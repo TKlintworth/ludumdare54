@@ -23,7 +23,7 @@ func _on_submit_score_button_button_up():
 
 
 func _on_name_entry_box_text_changed(new_text):
-	print("nmew text: ", new_text)
+	print("new text: ", new_text)
 	print(new_text.length())
 	player_name = new_text
 	if(new_text.length() > 0):

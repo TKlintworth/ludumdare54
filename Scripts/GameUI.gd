@@ -12,6 +12,7 @@ var flashing = false
 func _ready():
 	LivesLabel = $HBoxContainer/VBoxContainer/LivesTexture/LivesLabel
 	ScoreLabel = $HBoxContainer/VBoxContainer2/ScoreLabel
+	ScoreLabel.text = "Score: 0"
 	HealthBar = $HBoxContainer/VBoxContainer/TextureProgressBar
 	LevelLabel = $HBoxContainer/VBoxContainer2/LevelLabel
 	FlashRect = $ColorRect

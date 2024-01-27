@@ -18,6 +18,7 @@ func _process(delta):
 	pass
 
 func pick_up():
-	$AudioStreamPlayer.play()
+	#$AudioStreamPlayer.play()
+	AudioManager.play("pickup1")
 	GameManager.update_lives(life_value)
 	queue_free()

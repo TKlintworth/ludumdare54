@@ -22,6 +22,7 @@ SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 PauseMenu="*res://Scenes/PauseMenu.tscn"
 MusicPlayer="*res://Scenes/MusicPlayer.tscn"
 GlobalCamera="*res://Scenes/GlobalCamera.tscn"
+AudioManager="*res://Scenes/AudioManager.tscn"
 
 [display]
 
