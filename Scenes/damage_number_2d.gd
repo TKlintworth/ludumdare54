@@ -9,6 +9,7 @@ func _ready():
 	pass
 	
 func set_values_and_animate(value:String, start_pos:Vector2, height:float, spread:float) -> void:
+	print("set values and animate")
 	label.text = value
 	ap.play("new_animation")
 	

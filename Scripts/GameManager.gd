@@ -13,13 +13,14 @@ extends Node
 	"res://Scenes/level9.tscn",
 	"res://Scenes/level10.tscn",
 ]
-
 @export var game_over_scene = "res://Scenes/GameEndUI.tscn"
 @export var leaderboard_scene = "res://addons/silent_wolf/Scores/Leaderboard.tscn"
 @export var skeleton_death_effect = preload("res://Scenes/SkeleDeathParticles.tscn")
 @export var player_max_lives = 3
 @export var shakeStrength: float = 5.0
 @export var shakeFade: float = 5.0
+
+@onready var damage_number_2d_template = preload("res://Scenes/damage_number_2d.tscn")
 
 var ui : Node = null
 var game_UI
@@ -41,12 +42,38 @@ var camera_offset
 var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
 var shake_fade: float = 0.0
+var damage_number_2d_pool:Array[DamageNumber2D] = []
+var damage_label_height = 10
+var damage_label_spread = 10
 
 signal player_current_lives_changed
 signal player_current_health_changed
 signal current_level_changed
 signal player_score_changed
 signal multiplier_changed
+
+func get_damage_number() -> DamageNumber2D:
+	print("get damage number")
+	if damage_number_2d_pool.size() > 0:
+		return damage_number_2d_pool.pop_front()
+	else:
+		var new_damage_number = damage_number_2d_template.instantiate()
+		print("new damage number: ", new_damage_number)
+		new_damage_number.tree_exited.connect(
+			func():damage_number_2d_pool.append(new_damage_number))
+		return new_damage_number
+
+func spawn_damage_number(value:float, spawn_pos:Vector2):
+	print("spawn pos: ", spawn_pos)
+	var damage_number = get_damage_number()
+	#damage_number.position = spawn_pos
+	print("damage number: ", damage_number)
+	print("damage number position, parent", damage_number.position, " ", damage_number.get_parent())
+	var val = str(round(value))
+	var pos = spawn_pos
+	#add_child(damage_number, true)
+	get_tree().root.add_child(damage_number)
+	damage_number.set_values_and_animate(val, pos, damage_label_height, damage_label_spread)
 
 func apply_shake(strength=false, fade=false):
 	if(!strength):

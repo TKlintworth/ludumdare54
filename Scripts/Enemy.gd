@@ -1,29 +1,31 @@
 extends Area2D
 
+@onready var spawn_point = $SpawnPoint
+@onready var damage_number_2d_template = preload("res://Scenes/damage_number_2d.tscn")
+
 @export var ProjectileScene : PackedScene
 @export var MAX_HEALTH: float = 10
-var current_health
-signal enemy_died(node_position)
+
+enum State {STATE_IDLE, STATE_ATTACK, STATE_DODGE, STATE_DYING}
 
 const MIN_ACTION_FREQ = 2
 const SPEED = 150
 const dodge_distance = 100
 
+var current_health
 var time_since_last_action = 0
 var dodge_dir
-
-enum State {STATE_IDLE, STATE_ATTACK, STATE_DODGE, STATE_DYING}
 var current_state
 var distance = 0
 var is_ready_to_attack
-
 var MAX_Y = 600
 var MIN_Y = 0
 var MAX_X = 1100
 var MIN_X = 0
 var animation_playing = false
-
 var level_manager
+
+signal enemy_died(node_position)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -85,7 +87,28 @@ func _on_area_entered(area):
 			take_damage(node.get_damage())
 			node.queue_free()
 
+#func spawn_damage_number(value:float, height:int, spread:int):
+#	var damage_number = get_damage_number()
+#	var val = str(round(value))
+#	var pos = spawn_point.position
+#	#var height = height_value.text.to_float()
+#	#var spread = spread_value.text.to_float()
+#	add_child(damage_number, true)
+#	damage_number.set_values_and_animate(val, pos, height, spread)
+
+#func get_damage_number() -> DamageNumber2D:
+#	if damage_number_2d_pool.size() > 0:
+#		return damage_number_2d_pool.pop_front()
+#	else:
+#		var new_damage_number = damage_number_2d_template.instantiate()
+#		new_damage_number.tree_exited.connect(
+#			func():damage_number_2d_pool.append(new_damage_number))
+#		return new_damage_number
+
 func take_damage(damage):
+	#Spawn the damage number scene
+	GameManager.spawn_damage_number(damage, self.position)
+	#spawn_damage_number(damage, damage_label_height, damage_label_spread)
 	current_health -= damage
 	print("Enemy taking damage")
 	$AnimatedSprite2D.modulate = Color.RED

@@ -40,13 +40,13 @@ metadata/_edit_lock_ = true
 position = Vector2(194, 57)
 scale = Vector2(1, 1)
 ProjectileScene = ExtResource("4_37mkx")
-MAX_HEALTH = 50.0
+MAX_HEALTH = 150.0
 
 [node name="Skeleton2" parent="Enemies" instance=ExtResource("5_mgk2v")]
 position = Vector2(184, 168)
 scale = Vector2(1, 1)
 ProjectileScene = ExtResource("4_37mkx")
-MAX_HEALTH = 50.0
+MAX_HEALTH = 150.0
 
 [node name="LifePickup" parent="." instance=ExtResource("10_b60mh")]
 position = Vector2(50, 40)
