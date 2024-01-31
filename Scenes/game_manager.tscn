@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dex6kjnsgqga6" path="res://assets/sounds/song.wav" id="3_fxuik"]
 
 [node name="GameManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_sya6k")
 scenes = [ExtResource("2_wppr7")]
 

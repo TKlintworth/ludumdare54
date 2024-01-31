@@ -19,3 +19,7 @@ func _on_resume_button_button_up():
 func _on_quit_button_button_up():
 	AudioManager.play("button_click")
 	GameManager.quit()
+
+
+func _on_main_menu_button_button_up():
+	print("main menu")

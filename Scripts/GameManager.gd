@@ -165,7 +165,8 @@ func unload_ui():
 
 func pause_button_pressed():
 	print("pause toggle")
-	get_tree().paused = not get_tree().paused
+	print(get_tree().paused)
+	get_tree().paused = !(get_tree().paused)
 	if(get_tree().paused):
 		PauseMenu.visible = true
 	else:
@@ -234,6 +235,7 @@ func save_high_score(player_name):
 	get_tree().change_scene_to_file(leaderboard_scene)
 
 func quit():
+	print("inside gm quit")
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
 func _notification(what):

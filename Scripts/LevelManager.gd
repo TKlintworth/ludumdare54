@@ -180,6 +180,9 @@ func draw_line_at_edge(coords, direction):
 	add_child(line)
 
 func start_level():
+	if(num_tiles_selected < 1):
+		print("Need to select a tile to start")
+		return
 	if(!level_UI.level_complete_mode):
 		print("START LEVEL")
 		level_UI.hide()
