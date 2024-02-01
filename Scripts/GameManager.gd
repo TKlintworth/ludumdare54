@@ -266,6 +266,7 @@ func update_score(s, multi=true):
 	else:
 		player_score += int(s)
 	player_score_changed.emit()
+	return player_score
 
 func update_lives(l):
 	player_current_lives += 1

@@ -10,6 +10,7 @@ var start_button
 var select_node
 var level_complete_mode = false
 var ui_mode = true
+var points_gained = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	label_node = get_node("CenterContainer/VBoxContainer/TilesRemainingLabel")
@@ -28,10 +29,10 @@ func level_complete():
 	ui_mode = true
 	level_complete_mode = true
 	if(label_node and select_node and start_button and multiplier_node):
-		label_node.hide()
+		#label_node.hide()
 		select_node.text = "Level Complete"
 		#TODO: replace with score per level variable
-		#label_node.text = "+ " + "100 points"
+		label_node.text = "Gained " + str(points_gained) + " points"
 		#select_node.text = "Level Complete"
 		start_button.text = "Next Level"
 		multiplier_node.hide()

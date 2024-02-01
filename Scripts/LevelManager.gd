@@ -25,6 +25,7 @@ var MAX_X
 var game_UI
 var level_UI
 var points_for_level = 100
+var points_gained = 0
 var levelui_ui_mode 
 
 func _ready():
@@ -344,8 +345,10 @@ func _on_enemy_died(enemyPos):
 	print(num_enemies)
 	# If there are no enemies left, the level is over
 	if num_enemies - 1 <= 0:
-		GameManager.update_score(points_for_level, false)
+		points_gained = GameManager.update_score(points_for_level, false)
+		level_UI.points_gained = points_gained
 		GameManager.level_complete()
+		points_gained = 0
 		#GameManager.change_level(GameManager.current_level_index + 1)
 
 func calculate_multiplier():
