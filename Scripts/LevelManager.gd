@@ -125,33 +125,55 @@ func draw_active(selected_idxs):
 		add_child(rect)
 		active_lines.append(rect)
 
+func draw_highlight_box(x_idx, y_idx, clr):
+	var rect = Line2D.new()
+	rect.width = 2
+	if (type_string(typeof(clr)) == "Array"):
+		var r = 0
+		var g = 0
+		var b = 0
+		var a = 1
+		if clr[0]:
+			r = clr[0]
+		if clr[1]:
+			g = clr[1]
+		if clr[2]:
+			b = clr[2]
+		if clr[3]:
+			a = clr[3]
+			
+		rect.default_color = Color(r, g, b, a)
+	else:
+		rect.default_color = Color(clr)
+		
+	highlighted_x_idx = x_idx
+	highlighted_y_idx = y_idx
+	
+	if highlighted_line:
+		highlighted_line.queue_free()
+	
+	rect.points = [
+		Vector2(tile_size * x_idx, tile_size * y_idx),
+		Vector2(tile_size * (x_idx + 1), tile_size * y_idx),
+		Vector2(tile_size * (x_idx + 1), tile_size * (y_idx + 1)),
+		Vector2(tile_size * x_idx, tile_size * (y_idx + 1)),
+		Vector2(tile_size * x_idx, tile_size * y_idx)
+	]
+	
+	add_child(rect)
+	highlighted_line = rect
+
 func _process(delta):
 	if !is_active:
 		var mouse_cord = get_global_mouse_position()
 		var x_idx = floor(mouse_cord.x / tile_size)
 		var y_idx = floor(mouse_cord.y / tile_size)
 		
-		if (x_idx != highlighted_x_idx or y_idx != highlighted_y_idx):
-			highlighted_x_idx = x_idx
-			highlighted_y_idx = y_idx
+		if (Vector2i(x_idx,y_idx) in active_tiles):
+			draw_highlight_box(x_idx, y_idx, "red")
 			
-			if highlighted_line:
-				highlighted_line.queue_free()
-			
-			var rect = Line2D.new()
-			rect.width = 2
-			rect.default_color = Color(0, .6, .2, 1)
-			
-			rect.points = [
-				Vector2(tile_size * x_idx, tile_size * y_idx),
-				Vector2(tile_size * (x_idx + 1), tile_size * y_idx),
-				Vector2(tile_size * (x_idx + 1), tile_size * (y_idx + 1)),
-				Vector2(tile_size * x_idx, tile_size * (y_idx + 1)),
-				Vector2(tile_size * x_idx, tile_size * y_idx)
-			]
-			
-			add_child(rect)
-			highlighted_line = rect
+		elif (x_idx != highlighted_x_idx or y_idx != highlighted_y_idx):
+			draw_highlight_box(x_idx, y_idx, [0, .6, .2, 1])
 
 func draw_line_at_edge(coords, direction):
 	var line = Line2D.new()
