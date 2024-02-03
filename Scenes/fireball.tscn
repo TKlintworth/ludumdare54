@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://j504aewimpsm"]
+[gd_scene load_steps=12 format=3 uid="uid://j504aewimpsm"]
 
 [ext_resource type="PackedScene" uid="uid://bx6qoo1j1uy3d" path="res://Scenes/Projectile.tscn" id="1_tsa8s"]
 [ext_resource type="Texture2D" uid="uid://m5wkwc0uxm2f" path="res://assets/sprites/fireball_21x7.png" id="2_3hhax"]
@@ -17,8 +17,27 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_umwlk"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vmm7r"]
+gradient = SubResource("Gradient_umwlk")
+fill_from = Vector2(0.435897, 0.418803)
+fill_to = Vector2(0.615385, 0.42735)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1i4yp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_67gvm"]
+normalize = false
+noise = SubResource("FastNoiseLite_1i4yp")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w5k38"]
 shader = ExtResource("4_ewuuv")
+shader_parameter/brighter_color = Vector4(1, 0.8, 0, 1)
+shader_parameter/middle_color = Vector4(1, 0.56, 0, 1)
+shader_parameter/darker_color = Vector4(0.64, 0.2, 0.05, 1)
+shader_parameter/spread = 0.473
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_67gvm")
+shader_parameter/gradient_tex = SubResource("GradientTexture2D_vmm7r")
 
 [node name="Fireball" groups=["tag_enemy_projectile"] instance=ExtResource("1_tsa8s")]
 script = ExtResource("2_lqmag")
@@ -31,4 +50,6 @@ position = Vector2(-7, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_w5k38")
+position = Vector2(-0.999998, -6)
+scale = Vector2(0.316406, 0.27832)
 texture = ExtResource("5_aopuw")
