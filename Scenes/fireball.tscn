@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://j504aewimpsm"]
+[gd_scene load_steps=8 format=3 uid="uid://j504aewimpsm"]
 
 [ext_resource type="PackedScene" uid="uid://bx6qoo1j1uy3d" path="res://Scenes/Projectile.tscn" id="1_tsa8s"]
 [ext_resource type="Texture2D" uid="uid://m5wkwc0uxm2f" path="res://assets/sprites/fireball_21x7.png" id="2_3hhax"]
 [ext_resource type="Script" path="res://Scripts/fireball.gd" id="2_lqmag"]
+[ext_resource type="Shader" path="res://Scenes/fireball.gdshader" id="4_ewuuv"]
+[ext_resource type="Texture2D" uid="uid://b850quybrusg3" path="res://Art/icon.svg" id="5_aopuw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_23qow"]
 animations = [{
@@ -15,6 +17,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5k38"]
+shader = ExtResource("4_ewuuv")
+
 [node name="Fireball" groups=["tag_enemy_projectile"] instance=ExtResource("1_tsa8s")]
 script = ExtResource("2_lqmag")
 
@@ -23,3 +28,7 @@ sprite_frames = SubResource("SpriteFrames_23qow")
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]
 position = Vector2(-7, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_w5k38")
+texture = ExtResource("5_aopuw")
