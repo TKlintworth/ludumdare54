@@ -25,6 +25,9 @@ fill_from = Vector2(0.435897, 0.418803)
 fill_to = Vector2(0.615385, 0.42735)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_1i4yp"]
+noise_type = 5
+frequency = 0.0096
+fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_67gvm"]
 normalize = false
@@ -32,10 +35,10 @@ noise = SubResource("FastNoiseLite_1i4yp")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w5k38"]
 shader = ExtResource("4_ewuuv")
-shader_parameter/brighter_color = Vector4(1, 0.8, 0, 1)
-shader_parameter/middle_color = Vector4(1, 0.56, 0, 1)
-shader_parameter/darker_color = Vector4(0.64, 0.2, 0.05, 1)
-shader_parameter/spread = 0.473
+shader_parameter/brighter_color = Vector4(1, 0.65, 0, 1)
+shader_parameter/middle_color = Vector4(1, 0.45, 0, 1)
+shader_parameter/darker_color = Vector4(0.64, 0.24, 0.05, 1)
+shader_parameter/spread = 0.5
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_67gvm")
 shader_parameter/gradient_tex = SubResource("GradientTexture2D_vmm7r")
 
@@ -50,6 +53,6 @@ position = Vector2(-7, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_w5k38")
-position = Vector2(-0.999998, -6)
+position = Vector2(-1, -7)
 scale = Vector2(0.316406, 0.27832)
 texture = ExtResource("5_aopuw")
