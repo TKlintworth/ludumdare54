@@ -21,6 +21,9 @@ func create_projectile(direction, s, d):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(!get_viewport().get_visible_rect().has_point(position)):
+		print("get rid of projectile")
+		queue_free()
 	if(is_fired):
 		#$AnimatedSprite2D.rotation_degrees = 90
 		#position.x += (dir * speed * delta).x

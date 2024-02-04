@@ -7,6 +7,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(!get_viewport().get_visible_rect().has_point(position)):
+		print("get rid of projectile")
+		queue_free()
 	if(is_fired):
 		#position.x += (dir * speed * delta).x
 		#position.y += (dir * speed * delta).y
