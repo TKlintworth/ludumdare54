@@ -64,11 +64,8 @@ func _process(delta):
 			ChargeKnob.set_offset(Vector2(0, 0))
 			# Calculate time difference and fractional charge for determining projectile speed and damage
 			var frac = current_charge_time / MAX_CHARGE_TIME
-			print("frac:", frac)
 			var p_speed = MIN_PROJ_SPEED + frac * (MAX_PROJ_SPEED - MIN_PROJ_SPEED)
-			print("p_speed:", p_speed)
 			var p_dmg = MIN_DAMAGE + frac * (MAX_DAMAGE - MIN_DAMAGE)
-			print("p_dmg:", p_dmg)
 			# Reset charge related variables
 			is_charge_started = false
 			
@@ -87,12 +84,9 @@ func _process(delta):
 func spawn_projectile(dir, spd, dmg):
 	$AudioStreamPlayer.play()
 	var proj = ProjectileScene.instantiate()
-	print(shoot_point.global_position)
 	proj.position = shoot_point.global_position
 	proj.create_projectile(dir, spd, dmg)
 	get_tree().root.add_child(proj)
 
 func fire():
 	pass
-
-
